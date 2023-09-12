@@ -21,12 +21,25 @@ public class SiideScrolling : MonoBehaviour
         {
             cameraPosition.x = cameraPosition.x;
         }
+
+     
         else
         {
             cameraPosition.x = player.position.x;
         }
         //cameraPosition.x = player.position.x;
         //cameraPosition.x = Mathf.Max(player.position.x, cameraPosition.x); // there is an option to prevent the player to move to the left.
+
+
+        if (player.position.y < 0)
+        {
+            cameraPosition.y = cameraPosition.y;
+        }
+
+        else
+        {
+            cameraPosition.y = player.position.y;
+        }
         transform.position = cameraPosition;
 
     }
