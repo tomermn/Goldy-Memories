@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8031106571626019720}
   - component: {fileID: 7349930756075927474}
   - component: {fileID: 2083504980076756031}
+  - component: {fileID: 7527728015216735194}
   m_Layer: 3
   m_Name: Goldy
   m_TagString: Player
@@ -212,6 +213,7 @@ MonoBehaviour:
   idle: {fileID: 21300000, guid: 5ea6d49fe74964a42af04bbf899d55f9, type: 3}
   jump: {fileID: 21300000, guid: f2e9fce1ade959a48aef2db47bc0bab6, type: 3}
   run: {fileID: 7349930756075927474}
+  climb: {fileID: 0}
 --- !u!114 &7349930756075927474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,10 +248,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d336cb2e4e42cdf40bc2c1e434001b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
-  LadderClimbSpeed: 5
-  JumpForce: 60
+  MoveSpeed: 1.5
+  LadderClimbSpeed: 9
+  JumpForce: 35
   isJumping: 0
-  isOnLadder: 0
+  ladderFlag: 0
+  onLadder: 0
   moveHorizontal: 0
   moveVertical: 0
+--- !u!114 &7527728015216735194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304444996703895823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a178d54ada38f49a59b1227c64cb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: ae36d7af8178b284c91bde91697e0551, type: 3}
+  - {fileID: 21300000, guid: b3b862333b5749a4eaafc4b343c09427, type: 3}
+  framerate: 0.16666667

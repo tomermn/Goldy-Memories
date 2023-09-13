@@ -9,7 +9,10 @@ public class PlayerSpriteRenderer : MonoBehaviour
 
     public Sprite idle;
     public Sprite jump;
+    //public Sprite onLadder; need a sprite from Nika
+
     public AnimatedSprite run;
+    public ClimbingSprites climb;
 
     private void Awake()
     {
@@ -29,16 +32,29 @@ public class PlayerSpriteRenderer : MonoBehaviour
 
     private void LateUpdate()
     {
-        run.enabled = playerMovement.running;
-        if (playerMovement.isJumping && !playerMovement.isOnLadder)
+        run.enabled = playerMovement.running && !playerMovement.onLadder;
+
+        if (playerMovement.isJumping && !playerMovement.ladderFlag)
         {
             Debug.Log("isJumping!");
             spriteRenderer.sprite = jump;
         }
+
+        else if (playerMovement.onLadder && playerMovement.isMovingVertical)
+        {
+            
+            run.enabled = false;
+            climb.enabled = true; ;
+        }
+
+        //else if (playerMovement.onLadder) need this sprite form Nika
+        //{
+        //    spriteRenderer.sprite = onLadder;
+        //}
+
         else if (!playerMovement.running)
         {
             spriteRenderer.sprite = idle;
         }
-
     }
 }

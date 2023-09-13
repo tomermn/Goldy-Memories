@@ -1,17 +1,21 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatedSprite : MonoBehaviour
+public class ClimbingSprites : MonoBehaviour
 {
     public Sprite[] sprites;
-    public float framerate =(1/6f);
+    public float framerate = (1 / 6f);
 
     private SpriteRenderer spriteRenderer;
+    private PlayerMovement playerMovement;
     private int frame;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerMovement = GetComponent<PlayerMovement>();
+        this.enabled = false;
     }
 
     private void OnEnable()
@@ -27,7 +31,7 @@ public class AnimatedSprite : MonoBehaviour
     private void Animate()
     {
         frame++;
-        Debug.Log("frame number: " + frame);
+        Debug.Log("climbing frame number: " + frame);
 
         if (frame >= sprites.Length)
         {
@@ -35,8 +39,10 @@ public class AnimatedSprite : MonoBehaviour
         }
 
         spriteRenderer.sprite = sprites[frame];
+    }
 
-
-
+    private void Update()
+    {
+        this.enabled = playerMovement.onLadder;
     }
 }

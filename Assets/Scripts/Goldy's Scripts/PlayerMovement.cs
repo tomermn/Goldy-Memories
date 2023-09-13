@@ -14,12 +14,15 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce = 60f;
 
     public bool isJumping = false;
-    public bool isOnLadder = false;
+    public bool ladderFlag = false;
+    public bool onLadder = false;
 
     public float moveHorizontal;
     public float moveVertical;
 
     public bool running => Mathf.Abs(moveHorizontal) > 0f;
+    public bool isMovingVertical => Mathf.Abs(moveVertical) > 0f;
+
 
 
     private void Start()
@@ -42,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         position += velocity * Time.fixedDeltaTime;
 
 
-        if (!isOnLadder)
+        if (!ladderFlag)
         {
             // Handle regular movement
             if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
@@ -54,12 +57,18 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
                 isJumping = true;
+
             }
         }
 
         else
         {
             rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
+            if (moveVertical != 0f)
+            {
+                onLadder = true;
+                Debug.Log(onLadder);
+            }
         }
 
 
@@ -88,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.tag == "Ladder")
         {
-            isOnLadder = true;
+            ladderFlag = true;
             rigidbody.gravityScale = 0f;
         }
     }
@@ -101,7 +110,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Ladder"))
         {
-            isOnLadder = false;
+            ladderFlag = false;
+            onLadder = false;
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder
             
             
