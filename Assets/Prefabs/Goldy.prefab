@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5611476660524019627}
   - component: {fileID: 5721423278211616116}
   - component: {fileID: 5286091234607356367}
-  - component: {fileID: 4399929045284796367}
   - component: {fileID: 8031106571626019720}
   - component: {fileID: 7349930756075927474}
+  - component: {fileID: 2083504980076756031}
   m_Layer: 3
   m_Name: Goldy
   m_TagString: Player
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -513281791
-  m_SortingLayer: 2
-  m_SortingOrder: 3
+  m_SortingLayer: 4
+  m_SortingOrder: 800
   m_Sprite: {fileID: 21300000, guid: 5ea6d49fe74964a42af04bbf899d55f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -197,23 +197,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.08}
   m_EdgeRadius: 0
---- !u!114 &4399929045284796367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2304444996703895823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d336cb2e4e42cdf40bc2c1e434001b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 1.5
-  JumpForce: 25
-  isJumping: 0
-  moveHorizontal: 0
-  moveVertical: 0
 --- !u!114 &8031106571626019720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,3 +234,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cd0cf54da8274ca459be6d645b343eef, type: 3}
   - {fileID: 21300000, guid: aa8238c57bee2b54da4da202a3890517, type: 3}
   framerate: 0.1
+--- !u!114 &2083504980076756031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304444996703895823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d336cb2e4e42cdf40bc2c1e434001b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 1
+  LadderClimbSpeed: 5
+  JumpForce: 60
+  isJumping: 0
+  isOnLadder: 0
+  moveHorizontal: 0
+  moveVertical: 0

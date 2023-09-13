@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - ItemSpawnPoint
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2249450371
+    locked: 0
+  - name: Ladders
+    uniqueID: 2809317031
     locked: 0
   - name: Player
     uniqueID: 3781685505

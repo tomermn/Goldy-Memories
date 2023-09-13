@@ -30,9 +30,10 @@ public class PlayerSpriteRenderer : MonoBehaviour
     private void LateUpdate()
     {
         run.enabled = playerMovement.running;
-        if (playerMovement.isJumping)
+        if (playerMovement.isJumping && !playerMovement.isOnLadder)
         {
-           spriteRenderer.sprite = jump;
+            Debug.Log("isJumping!");
+            spriteRenderer.sprite = jump;
         }
         else if (!playerMovement.running)
         {

@@ -10,10 +10,15 @@ public class PlayerMovement : MonoBehaviour
 
     private new Rigidbody2D rigidbody;
     public float MoveSpeed = 1f;
+    public float LadderClimbSpeed = 5f;
     public float JumpForce = 60f;
+
     public bool isJumping = false;
+    public bool isOnLadder = false;
+
     public float moveHorizontal;
     public float moveVertical;
+
     public bool running => Mathf.Abs(moveHorizontal) > 0f;
 
 
@@ -25,8 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
         moveHorizontal = Input.GetAxisRaw("Horizontal"); //left = a = -1, right = 'd' = 1, 0 = standing
-        moveVertical = Input.GetAxisRaw("Vertical"); //
+        moveVertical = Input.GetAxisRaw("Vertical"); 
 
     }
 
@@ -36,19 +42,24 @@ public class PlayerMovement : MonoBehaviour
         position += velocity * Time.fixedDeltaTime;
 
 
-
-
-        if (moveHorizontal > 0.1f || moveHorizontal < -0.1f) // greater than epsilon
+        if (!isOnLadder)
         {
+            // Handle regular movement
+            if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+            {
+                rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+            }
 
-            rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+            if (moveVertical > 0.1f && !isJumping)
+            {
+                rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
+                isJumping = true;
+            }
         }
-        
 
-        if (moveVertical > 0.1f && !isJumping) // greater than epsilon
+        else
         {
-            
-            rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
+            rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
         }
 
 
@@ -74,6 +85,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
         }
+
+        else if (collision.gameObject.tag == "Ladder")
+        {
+            isOnLadder = true;
+            rigidbody.gravityScale = 0f;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -81,6 +98,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             isJumping = true; ;
+        }
+        else if (collision.gameObject.CompareTag("Ladder"))
+        {
+            isOnLadder = false;
+            rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder
+            
+            
         }
     }
 
