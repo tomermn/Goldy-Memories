@@ -213,7 +213,7 @@ MonoBehaviour:
   idle: {fileID: 21300000, guid: 5ea6d49fe74964a42af04bbf899d55f9, type: 3}
   jump: {fileID: 21300000, guid: f2e9fce1ade959a48aef2db47bc0bab6, type: 3}
   run: {fileID: 7349930756075927474}
-  climb: {fileID: 0}
+  climb: {fileID: 7527728015216735194}
 --- !u!114 &7349930756075927474
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3478,17 +3478,6 @@ Transform:
   - {fileID: 1828781485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1637527247 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7527728015216735194, guid: 1d7a510e01eb3fb49bfa831eb1b9908d, type: 3}
-  m_PrefabInstance: {fileID: 8051891393351175541}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a178d54ada38f49a59b1227c64cb02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1678846998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7336,10 +7325,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ladder
       objectReference: {fileID: 0}
-    - target: {fileID: 5529581539916635837, guid: 3621fe380f5b61940b3826f8fac360bd, type: 3}
-      propertyPath: m_Size.y
-      value: 7.8
-      objectReference: {fileID: 0}
     - target: {fileID: 5701734686582964953, guid: 3621fe380f5b61940b3826f8fac360bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.5
@@ -7379,14 +7364,6 @@ PrefabInstance:
     - target: {fileID: 5701734686582964953, guid: 3621fe380f5b61940b3826f8fac360bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6424594738600355030, guid: 3621fe380f5b61940b3826f8fac360bd, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6424594738600355030, guid: 3621fe380f5b61940b3826f8fac360bd, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 7.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7450,10 +7427,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8031106571626019720, guid: 1d7a510e01eb3fb49bfa831eb1b9908d, type: 3}
-      propertyPath: climb
-      value: 
-      objectReference: {fileID: 1637527247}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
