@@ -12,7 +12,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
     //public Sprite onLadder; need a sprite from Nika
 
     public AnimatedSprite run;
-    public ClimbingSprites climb;
+    public AnimatedSprite climb;
 
     private void Awake()
     {

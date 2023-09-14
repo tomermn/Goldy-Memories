@@ -6,25 +6,25 @@ public class AnimatedSprite : MonoBehaviour
     public Sprite[] sprites;
     public float framerate =(1/6f);
 
-    private SpriteRenderer spriteRenderer;
-    private int frame;
+    protected SpriteRenderer spriteRenderer;
+    protected int frame;
 
-    private void Awake()
+    virtual protected void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         InvokeRepeating(nameof(Animate), framerate, framerate);
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         CancelInvoke();
     }
 
-    private void Animate()
+    protected void Animate()
     {
         frame++;
         Debug.Log("frame number: " + frame);
@@ -35,8 +35,5 @@ public class AnimatedSprite : MonoBehaviour
         }
 
         spriteRenderer.sprite = sprites[frame];
-
-
-
     }
 }

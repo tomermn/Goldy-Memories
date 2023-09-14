@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
 
 public class SiideScrolling : MonoBehaviour
 {
@@ -39,6 +39,7 @@ public class SiideScrolling : MonoBehaviour
         else
         {
             cameraPosition.y = player.position.y;
+            
         }
         transform.position = cameraPosition;
 
