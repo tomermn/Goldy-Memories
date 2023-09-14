@@ -44,7 +44,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
         {
             
             run.enabled = false;
-            climb.enabled = true; ;
+            climb.enabled = true;
         }
 
         //else if (playerMovement.onLadder) need this sprite form Nika
