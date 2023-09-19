@@ -36,7 +36,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
 
         if (playerMovement.isJumping && !playerMovement.ladderFlag)
         {
-            Debug.Log("isJumping!");
+            
             spriteRenderer.sprite = jump;
         }
 

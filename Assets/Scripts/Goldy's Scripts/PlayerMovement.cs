@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             if (moveVertical != 0f)
             {
                 onLadder = true;
-                Debug.Log(onLadder);
+                
             }
         }
 

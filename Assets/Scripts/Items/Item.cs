@@ -29,6 +29,7 @@ public class Item : MonoBehaviour
             inventory.AddToInvetory(this);
             Destroy(gameObject);
         }
+        
     }
 
     private void SpawnRandomally()

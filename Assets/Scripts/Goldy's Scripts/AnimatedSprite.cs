@@ -27,7 +27,7 @@ public class AnimatedSprite : MonoBehaviour
     protected void Animate()
     {
         frame++;
-        Debug.Log("frame number: " + frame);
+        
 
         if (frame >= sprites.Length)
         {
