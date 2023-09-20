@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7349930756075927474}
   - component: {fileID: 2083504980076756031}
   - component: {fileID: 7527728015216735194}
+  - component: {fileID: 3632441974093306996}
   m_Layer: 3
   m_Name: Goldy
   m_TagString: Player
@@ -34,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.581, y: -2.023, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -513281791
   m_SortingLayer: 4
   m_SortingOrder: 800
-  m_Sprite: {fileID: 21300000, guid: 5ea6d49fe74964a42af04bbf899d55f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f30f3a47d9520384a8cdd16493dc014c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,8 +151,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08, y: -0.18}
-  m_Size: {x: 0.89, y: 3.31}
+  m_Offset: {x: 0.01, y: -0.36}
+  m_Size: {x: 0.89, y: 3}
   m_Direction: 0
 --- !u!61 &5286091234607356367
 BoxCollider2D:
@@ -185,7 +186,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09, y: -1.89}
+  m_Offset: {x: -0.07, y: -1.98}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -210,8 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108eeb73e50336a4c84a721774b35c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idle: {fileID: 21300000, guid: 5ea6d49fe74964a42af04bbf899d55f9, type: 3}
+  idle: {fileID: 21300000, guid: f30f3a47d9520384a8cdd16493dc014c, type: 3}
   jump: {fileID: 21300000, guid: f2e9fce1ade959a48aef2db47bc0bab6, type: 3}
+  climbingState: {fileID: 0}
   run: {fileID: 7349930756075927474}
   climb: {fileID: 7527728015216735194}
 --- !u!114 &7349930756075927474
@@ -266,6 +268,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a178d54ada38f49a59b1227c64cb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 02ecd1d6d207a0f4e9c02322abf16ceb, type: 3}
+  - {fileID: 21300000, guid: 5fe6ffda028c4324c9ff99bf09d1c590, type: 3}
+  framerate: 0.16666667
+--- !u!114 &3632441974093306996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304444996703895823}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a8c6302c234d1419f68caea58d9de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
