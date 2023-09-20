@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
     private static List<Transform> usedSpawnPoints = new List<Transform>();
+    private bool isCollected = false;
 
 
     private void Start()
@@ -14,8 +16,9 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isCollected)
         {
+            isCollected = true;
             Collect(other.gameObject);
 
         }
@@ -23,11 +26,14 @@ public class Item : MonoBehaviour
 
     private void Collect(GameObject player)
     {
+        
         Inventory inventory = FindAnyObjectByType<Inventory>();
-        if (inventory != null)
+        if (inventory != null )
         {
+            
             inventory.AddToInvetory(this);
             Destroy(gameObject);
+            //Debug.Log(this.name);
         }
         
     }
