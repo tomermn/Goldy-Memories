@@ -9,7 +9,8 @@ public class PlayerSpriteRenderer : MonoBehaviour
 
     public Sprite idle;
     public Sprite jump;
-    //public Sprite onLadder; need a sprite from Nika
+    //public Sprite onLadder; an idle state on ladder - option
+    public Sprite climbingState;
 
     public AnimatedSprite run;
     public AnimatedSprite climb;
@@ -45,12 +46,14 @@ public class PlayerSpriteRenderer : MonoBehaviour
             
             run.enabled = false;
             climb.enabled = true;
+            climbingState = climb.getCurrentSprite();
         }
 
-        //else if (playerMovement.onLadder) need this sprite form Nika
-        //{
-        //    spriteRenderer.sprite = onLadder;
-        //}
+        else if (playerMovement.onLadder) 
+        {
+            spriteRenderer.sprite = climbingState;
+            //spriteRenderer.sprite = onLadder; //an option
+        }
 
         else if (!playerMovement.running)
         {
