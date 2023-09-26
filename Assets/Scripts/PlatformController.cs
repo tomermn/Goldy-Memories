@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour
@@ -23,5 +21,25 @@ public class PlatformController : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, targetPos, platformSpeed * Time.deltaTime);
         
+    }
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("on moving");
+        if (collision.CompareTag("Player"))
+        {
+            collision.transform.SetParent(this.transform);
+            Debug.Log("on moving");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("exit moving");
+            collision.transform.SetParent(null);
+        }
     }
 }
