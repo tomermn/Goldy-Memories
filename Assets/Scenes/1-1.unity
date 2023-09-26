@@ -12645,9 +12645,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 439155331}
     m_Modifications:
+    - target: {fileID: 860900532335928905, guid: 799efed008901624d8aea40748cefabd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 860900532335928905, guid: 799efed008901624d8aea40748cefabd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -513281791
+      objectReference: {fileID: 0}
     - target: {fileID: 865633769401423294, guid: 799efed008901624d8aea40748cefabd, type: 3}
       propertyPath: m_Name
       value: Rain
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109975508368690825, guid: 799efed008901624d8aea40748cefabd, type: 3}
+      propertyPath: InitialModule.gravitySource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109975508368690825, guid: 799efed008901624d8aea40748cefabd, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109975508368690825, guid: 799efed008901624d8aea40748cefabd, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456220522559217035, guid: 799efed008901624d8aea40748cefabd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5456220522559217035, guid: 799efed008901624d8aea40748cefabd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12655,7 +12679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456220522559217035, guid: 799efed008901624d8aea40748cefabd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 3.32
       objectReference: {fileID: 0}
     - target: {fileID: 5456220522559217035, guid: 799efed008901624d8aea40748cefabd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12705,6 +12729,10 @@ PrefabInstance:
     - target: {fileID: 1373951535348260198, guid: bae4d3acdb799a645bce275cd6ab318c, type: 3}
       propertyPath: m_Name
       value: lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373951535348260198, guid: bae4d3acdb799a645bce275cd6ab318c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4685809687667028152, guid: bae4d3acdb799a645bce275cd6ab318c, type: 3}
       propertyPath: m_LocalPosition.x
