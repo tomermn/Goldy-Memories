@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
 
     public int n_items_to_collect = 3;
 
+    private Transform respawnPoint;
+
+    private GameObject player;
+
 
 
     private void Awake()
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            player = GameObject.FindWithTag("Player");
         }
     }
 
@@ -54,6 +59,7 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
     {
         this.level = level;
         this.phase = phase;
+        
 
         SceneManager.LoadScene($"{level}-{phase}"); //string interpolation
 
@@ -100,9 +106,31 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         }
     }
 
+    public void Respawn(float delay)
+    {
+        Invoke(nameof(Respawn), delay);
+    }
+
+    public void Respawn()
+    {
+        Debug.Log("respawn");
+        player.transform.position = respawnPoint.position;
+    }
+
+
     public void GameOver()
     {
         NewGame();
+    }
+
+    public void SetCheckpoint(Transform checkpoint)
+    {
+        respawnPoint = checkpoint;
+    }
+
+    public Transform GetCheckpoint()
+    {
+        return respawnPoint;
     }
 
 }
