@@ -17,30 +17,31 @@ public class SiideScrolling : MonoBehaviour
 
         Vector3 cameraPosition = transform.position;
 
-        if (player.position.x < 0)
+        if (player.position.x >= 0)
         {
-            cameraPosition.x = cameraPosition.x;
+            cameraPosition.x = player.position.x;
+            
         }
 
      
-        else
-        {
-            cameraPosition.x = player.position.x;
-        }
+        //else
+        //{
+        //    cameraPosition.x = cameraPosition.x;
+        //}
         //cameraPosition.x = player.position.x;
         //cameraPosition.x = Mathf.Max(player.position.x, cameraPosition.x); // there is an option to prevent the player to move to the left.
 
 
-        if (player.position.y < 0)
-        {
-            cameraPosition.y = cameraPosition.y;
-        }
-
-        else
+        if (player.position.y >= 0)
         {
             cameraPosition.y = player.position.y;
             
         }
+
+        //else
+        //{
+        //    cameraPosition.y = cameraPosition.y;
+        //}
         transform.position = cameraPosition;
 
     }
