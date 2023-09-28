@@ -14,11 +14,9 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
 
     public int n_items_to_collect = 3;
 
-    private Transform respawnPoint;
+    private Vector2 respawnPoint;
 
-    private GameObject player;
-
-
+    
 
     private void Awake()
     {
@@ -30,8 +28,8 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         else
         {
             Instance = this;
+            respawnPoint = new Vector2(-7, -2); //Player's starting position
             DontDestroyOnLoad(gameObject);
-            player = GameObject.FindWithTag("Player");
         }
     }
 
@@ -92,7 +90,9 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         Invoke(nameof(ResetLevel), delay);
     }
 
-
+    /*
+     * this method is called when the player is dead. in the current state of the game, the player can't be dead, so its an optional method for future use.
+     */
     public void ResetLevel()
     {
         lives--;
@@ -106,18 +106,9 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         }
     }
 
-    public void Respawn(float delay)
-    {
-        Invoke(nameof(Respawn), delay);
-    }
-
-    public void Respawn()
-    {
-        Debug.Log("respawn");
-        player.transform.position = respawnPoint.position;
-    }
-
-
+    /*
+     * this method is called when the player has no live. in the current state of the game, the player can't be dead, so its an optional method for future use.
+     */
     public void GameOver()
     {
         NewGame();
@@ -125,10 +116,12 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
 
     public void SetCheckpoint(Transform checkpoint)
     {
-        respawnPoint = checkpoint;
+        respawnPoint = (Vector2) checkpoint.position + new Vector2(0, 2); // spawn a little bit higher
     }
 
-    public Transform GetCheckpoint()
+
+
+    public Vector2 GetCheckpoint()
     {
         return respawnPoint;
     }

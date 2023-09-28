@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         camera = Camera.main;
+        transform.position = GameManager.Instance.GetCheckpoint();
     }
 
     private void Update()
@@ -83,9 +84,12 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
+    }
 
-
-
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1f);
+        transform.position = GameManager.Instance.GetCheckpoint();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -99,6 +103,17 @@ public class PlayerMovement : MonoBehaviour
         {
             ladderFlag = true;
             rigidbody.gravityScale = 0f;
+        }
+
+        else if (collision.tag == "CheckPoint")
+        {
+            GameManager.Instance.SetCheckpoint(collision.transform);
+        }
+
+        else if (collision.tag == "DeathBarrier")
+        {
+            StartCoroutine(Respawn());
+            
         }
     }
 

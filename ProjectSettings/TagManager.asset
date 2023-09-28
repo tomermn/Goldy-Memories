@@ -8,6 +8,8 @@ TagManager:
   - ItemSpawnPoint
   - Ladder
   - ProgressBar
+  - CheckPoint
+  - DeathBarrier
   layers:
   - Default
   - TransparentFX
