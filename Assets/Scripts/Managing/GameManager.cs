@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
 
     public int n_items_to_collect = 3;
 
+    private Vector2 respawnPoint;
 
+    
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         else
         {
             Instance = this;
+            respawnPoint = new Vector2(-7, -2); //Player's starting position
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
     {
         this.level = level;
         this.phase = phase;
+        
 
         SceneManager.LoadScene($"{level}-{phase}"); //string interpolation
 
@@ -86,7 +90,9 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         Invoke(nameof(ResetLevel), delay);
     }
 
-
+    /*
+     * this method is called when the player is dead. in the current state of the game, the player can't be dead, so its an optional method for future use.
+     */
     public void ResetLevel()
     {
         lives--;
@@ -100,9 +106,24 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
         }
     }
 
+    /*
+     * this method is called when the player has no live. in the current state of the game, the player can't be dead, so its an optional method for future use.
+     */
     public void GameOver()
     {
         NewGame();
+    }
+
+    public void SetCheckpoint(Transform checkpoint)
+    {
+        respawnPoint = (Vector2) checkpoint.position + new Vector2(0, 2); // spawn a little bit higher
+    }
+
+
+
+    public Vector2 GetCheckpoint()
+    {
+        return respawnPoint;
     }
 
 }
