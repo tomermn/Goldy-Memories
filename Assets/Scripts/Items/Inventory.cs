@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     public int n_to_collect;
     public static Inventory Instance;
     public ProgressBar progressBar;
+    
 
 
     private void Start()
@@ -39,5 +40,6 @@ public class Inventory : MonoBehaviour
 
         }
     }
+    
 
 }
