@@ -4633,6 +4633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sandwitch
       objectReference: {fileID: 0}
+    - target: {fileID: 9078105887246156164, guid: 11a50528a6eb7104ca27e3b8c53a7295, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
