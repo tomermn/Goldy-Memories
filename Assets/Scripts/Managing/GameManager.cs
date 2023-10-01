@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement; // required for loading a scene
 
@@ -15,8 +16,19 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
     public int n_items_to_collect = 3;
 
     private Vector2 respawnPoint;
+    public Hashtable itemHashtable2;
 
-    
+    public Hashtable itemHashtable = new Hashtable()
+    {
+        {"Yellow Bottle",null},
+        {"Sandwitch",null},
+        {"Apple", null},
+        {"Watch", null},
+        {"Scissors", null}
+
+    };
+
+
 
     private void Awake()
     {
