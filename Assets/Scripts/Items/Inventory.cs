@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
         string inventoryJson = JsonUtility.ToJson(collectedItems);
         PlayerPrefs.SetString("CollectedItems", inventoryJson);
         PlayerPrefs.Save();
-        ExportInventoryToCSV();
+        //ExportInventoryToCSV(); NOTICE: need to activate for saving the data into csv.
     }
 
     public void LoadInventory()
