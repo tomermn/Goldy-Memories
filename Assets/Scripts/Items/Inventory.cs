@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public ProgressBar progressBar;
 
     public static Inventory Instance;
+    
 
 
     private void Start()
@@ -20,7 +21,6 @@ public class Inventory : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-            
         }
         else
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+
 public class Item : MonoBehaviour
 {
     private static List<Transform> usedSpawnPoints = new List<Transform>();
