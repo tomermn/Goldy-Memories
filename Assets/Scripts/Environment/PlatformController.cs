@@ -26,11 +26,11 @@ public class PlatformController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("on moving");
+        
         if (collision.CompareTag("Player"))
         {
             collision.transform.SetParent(this.transform);
-            Debug.Log("on moving");
+            
         }
     }
 
