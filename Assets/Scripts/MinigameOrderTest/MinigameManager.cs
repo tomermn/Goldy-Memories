@@ -50,6 +50,7 @@ public class MinigameManager : MonoBehaviour
             if (itemSprite1 != null && itemSprite2 != null)
             {
                 image1.sprite = itemSprite1;
+                image2.sprite = itemSprite2;
                 
             }
 
