@@ -15,12 +15,13 @@ public class Inventory : MonoBehaviour
     
 
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            //LoadInventory();
         }
         else
         {
@@ -81,6 +82,19 @@ public class Inventory : MonoBehaviour
                 string csvLine = $"{itemName},{timestamp.ToString()}";
                 writer.WriteLine(csvLine);
             }
+        }
+    }
+
+    public string GetItemByIndex(int index)
+    {
+        if (index >= 0 && index <= collectedItems.Count)
+        {
+            return collectedItems[index].Item1;
+        }
+        else
+        {
+            Debug.LogError("item num is not valid");
+            return null;
         }
     }
 }

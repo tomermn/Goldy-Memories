@@ -67,20 +67,22 @@ public class GameManager : MonoBehaviour  // singelton, "global class" - single 
     public void NextLevel(float delay)
     {
         Invoke(nameof(NextLevel), delay);
+        SceneManager.LoadScene("MinigameOrderTest");
     }
 
     public void NextLevel()
     {
-        if (phase == 2)
-        {
-            phase = 1;
-            level++;
-        }
-        else
-        {
-            phase++;
-        }
-        LoadLevel(level, phase);
+        SceneManager.LoadScene("MinigameOrderTest");
+        //if (phase == 2)
+        //{
+        //    phase = 1;
+        //    level++;
+        //}
+        //else
+        //{
+        //    phase++;
+        //}
+        //LoadLevel(level, phase);
 
     }
 
