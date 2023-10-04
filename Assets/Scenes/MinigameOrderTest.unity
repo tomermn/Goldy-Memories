@@ -611,6 +611,12 @@ MonoBehaviour:
     second: 3
   - first: 4
     second: 2
+  - first: 1
+    second: 0
+  - first: 4
+    second: 3
+  - first: 2
+    second: 1
 --- !u!1 &1060793443
 GameObject:
   m_ObjectHideFlags: 0

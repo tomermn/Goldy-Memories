@@ -79,20 +79,20 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    
-    private Sprite GetItemSprite(string itemName)
+    public Sprite GetItemSprite(string itemName)
     {
         foreach (var itemData in itemDB.Items)
         {
             if (itemData.ItemName == itemName)
             {
-                return itemData.ItemSprite; 
+                return itemData.ItemSprite;
             }
         }
 
         Debug.LogWarning($"Item '{itemName}' not found in the database.");
-        return null; 
+        return null;
     }
+
 
     public void OnButton1Click()
     {
@@ -107,6 +107,8 @@ public class MinigameManager : MonoBehaviour
         pairNumber++;
         if (pairNumber == pairs.Length)
         {
+            button1.interactable = false;
+            button2.interactable = false;
             return;
         }
         Pair currentPair = pairs[pairNumber];
@@ -127,6 +129,8 @@ public class MinigameManager : MonoBehaviour
         pairNumber++;
         if (pairNumber == pairs.Length)
         {
+            button1.interactable = false;
+            button2.interactable = false;
             return;
         }
         Pair currentPair = pairs[pairNumber];
