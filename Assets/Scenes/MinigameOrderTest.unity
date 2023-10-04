@@ -606,6 +606,9 @@ MonoBehaviour:
   button2: {fileID: 769364990}
   pairNumber: 0
   correctAnswer: 0
+  timeDisplay: 0
+  timePressed: 0
+  toSaveStats: 0
   pairs:
   - first: 0
     second: 3
