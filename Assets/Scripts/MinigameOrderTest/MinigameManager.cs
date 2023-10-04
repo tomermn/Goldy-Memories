@@ -153,6 +153,7 @@ public class MinigameManager : MonoBehaviour
         {
             SaveResultsToCSV();
         }
+        Application.Quit();
          
 
     }
