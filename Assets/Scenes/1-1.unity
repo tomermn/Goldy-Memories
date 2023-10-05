@@ -3468,14 +3468,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 959532429}
   - {fileID: 1495466104}
+  - {fileID: 959532429}
   m_Father: {fileID: 356195081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 568.25, y: 139.85999}
-  m_SizeDelta: {x: -1136.5, y: -279.71}
+  m_AnchoredPosition: {x: -688.36005, y: -239}
+  m_SizeDelta: {x: -1371.23, y: -471.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720330461
 MonoBehaviour:
@@ -4840,8 +4840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.25, y: -76.86}
-  m_SizeDelta: {x: 678.47, y: 534.41}
+  m_AnchoredPosition: {x: -2.6398926, y: -53.169952}
+  m_SizeDelta: {x: 424.35, y: 390.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959532430
 MonoBehaviour:
@@ -11179,7 +11179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 28.75, y: 317.14005}
+  m_AnchoredPosition: {x: 90, y: 221}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495466105
@@ -11202,7 +11202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Have Collected This Item!
+  m_text: You found an item!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11211,8 +11211,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283206691
-  m_fontColor: {r: 0.13679245, g: 0.5471698, b: 0.2999203, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11229,8 +11229,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 53
+  m_fontSizeBase: 53
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11265,7 +11265,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -295.25122, y: -9.402889, z: -244.4755, w: -37.61161}
+  m_margin: {x: -295.25122, y: -9.402889, z: -91.57504, w: -37.61161}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
