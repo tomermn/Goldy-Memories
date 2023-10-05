@@ -53,7 +53,7 @@ public class MinigameManager : MonoBehaviour
 
     private IEnumerator PlayMinigame()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         Pair currentPair = pairs[pairNumber];
         DisplayNextItems(currentPair.first, currentPair.second);
         
