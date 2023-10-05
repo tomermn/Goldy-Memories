@@ -10,7 +10,8 @@ public class Inventory : MonoBehaviour
     public int n_collected;
     public int n_to_collect;
     public ProgressBar progressBar;
-
+    public ItemPanel itemPanel;
+    public ItemDatabase itemDB;
     public static Inventory Instance;
     
 
@@ -37,9 +38,17 @@ public class Inventory : MonoBehaviour
         if (n_to_collect != 0)
         {
             float progressRatio = (float)n_collected / n_to_collect;
-            Debug.Log(progressRatio);
             progressBar.IncProgress(progressRatio);
-
+            foreach (var itemData in itemDB.Items)
+            {
+                if (itemData.ItemName == item.name)
+                {
+                    Debug.Log(itemData.ItemName);
+                    Debug.Log(item.name);
+                    StartCoroutine(itemPanel.OnCollectingItem(itemData.ItemSprite));
+                    ;
+                }
+            }
         }
 
         SaveInventory();
