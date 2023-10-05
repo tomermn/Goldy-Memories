@@ -3,9 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 
 
@@ -26,6 +28,7 @@ public class MinigameManager : MonoBehaviour
 {
     public ItemDatabase itemDB;
     public Inventory inventory;
+    public TextMeshProUGUI title;
     public Image image1;
     public Image image2;
     public Button button1;
@@ -35,6 +38,7 @@ public class MinigameManager : MonoBehaviour
     public float timeDisplay;
     public float timePressed;
     public bool toSaveStats;
+    private int numCorrect;
 
     private List<PlayerMemoryTestResult> results = new List<PlayerMemoryTestResult>();
 
@@ -106,6 +110,10 @@ public class MinigameManager : MonoBehaviour
     {
         timePressed = Time.time;
         bool isCorrect = (correctAnswer == 0);
+        if (isCorrect)
+        {
+            numCorrect++;
+        }
         RecordResult(isCorrect);
         ContinueToNextPair();
     }
@@ -114,6 +122,10 @@ public class MinigameManager : MonoBehaviour
     {
         timePressed = Time.time;
         bool isCorrect = (correctAnswer == 1);
+        if (isCorrect)
+        {
+            numCorrect++;
+        }
         RecordResult(isCorrect);
         ContinueToNextPair();
         
@@ -141,6 +153,10 @@ public class MinigameManager : MonoBehaviour
         {
             SaveResultsToCSV();
         }
+        title.text = "Game Over";
+        image1.gameObject.SetActive(false);
+        image2.gameObject.SetActive(false);
+
         Application.Quit();
          
 
