@@ -73,8 +73,8 @@ public class MinigameManager : MonoBehaviour
         string itemName1 = inventory.GetItemByIndex(first);
         string itemName2 = inventory.GetItemByIndex(second);
 
-        Sprite itemSprite1 = GetItemSprite(itemName1);
-        Sprite itemSprite2 = GetItemSprite(itemName2);
+        Sprite itemSprite1 = itemDB.GetItemSprite(itemName1);
+        Sprite itemSprite2 = itemDB.GetItemSprite(itemName2);
 
         if (itemSprite1 != null && itemSprite2 != null)
         {
@@ -86,19 +86,7 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public Sprite GetItemSprite(string itemName)
-    {
-        foreach (var itemData in itemDB.Items)
-        {
-            if (itemData.ItemName == itemName)
-            {
-                return itemData.ItemSprite;
-            }
-        }
-
-        Debug.LogWarning($"Item '{itemName}' not found in the database.");
-        return null;
-    }
+    
 
 
 
