@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Handles the movement and interactions of the player character.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
 
     private new Camera camera;
-    private Vector2 velocity;
-
+    private Vector2 velocity;                   //Player'a current velocity
     private new Rigidbody2D rigidbody;
-    public float MoveSpeed = 1f;
-    public float LadderClimbSpeed = 5f;
-    public float JumpForce = 60f;
 
+    // Movement parameters
+    public float MoveSpeed = 1f;                //Player's movement speed parameter
+    public float LadderClimbSpeed = 5f;         //Player's climbing speed parameter
+    public float JumpForce = 60f;               //Player's jump force parameter
+
+    // Flags for player state
     public bool isJumping = false;
-    public bool ladderFlag = false;
-    public bool onLadder = false;
+    public bool ladderFlag = false;             // Indicates if the player is on a ladder.
+    public bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
 
+    // Input values
     public float moveHorizontal;
     public float moveVertical;
 
+    // Properties for additional state's information
     public bool running => Mathf.Abs(moveHorizontal) > 0f;
     public bool isMovingVertical => Mathf.Abs(moveVertical) > 0f;
 
@@ -32,19 +40,24 @@ public class PlayerMovement : MonoBehaviour
         transform.position = GameManager.Instance.GetCheckpoint();
     }
 
+    /// <summary>
+    /// Handles player input for horizontal and vertical movement.
+    /// </summary>
     private void Update()
     {
-
         moveHorizontal = Input.GetAxisRaw("Horizontal"); //left = a = -1, right = 'd' = 1, 0 = standing
         moveVertical = Input.GetAxisRaw("Vertical"); 
 
     }
 
+
+    /// <summary>
+    /// Handles physics-based movement, jumping, ladder climbing, and rotation.
+    /// </summary
     private void FixedUpdate()
     {
         Vector2 position = rigidbody.position;
         position += velocity * Time.fixedDeltaTime;
-
 
         if (!ladderFlag)
         {
@@ -64,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         else
         {
+            // Handle ladder climbing
             rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
             if (moveVertical != 0f)
             {
@@ -72,26 +86,33 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
-        //velocity.x = Mathf.MoveTowards(velocity.x, inputAxis* movement_speed, movement_speed * Time.deltaTime);
         velocity.x = Mathf.MoveTowards(velocity.x, moveHorizontal * MoveSpeed, MoveSpeed);
-        
+
+        // Set player rotation based on movement direction
         if (velocity.x > 0)
         {
-            transform.eulerAngles = Vector3.zero; // dont want any rotation
+            transform.eulerAngles = Vector3.zero; // No rotation for right movement
         }
-        else if (velocity.x < 0f) //moving to the left
+        else if (velocity.x < 0f) //Moving to the left
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
     }
 
+
+    /// <summary>
+    /// Initiates the respawn process after a delay.
+    /// </summary>
     private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(1f);
         transform.position = GameManager.Instance.GetCheckpoint();
     }
 
+    /// <summary>
+    /// Handles interactions when the player collides with certain objects.
+    /// </summary>
+    /// <param name="collision">The collider with which the player has collided.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Platform")
@@ -117,19 +138,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles actions when the player exits collision with certain objects.
+    /// </summary>
+    /// <param name="collision">The collider from which the player has exited.</param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Platform")
         {
-            isJumping = true; ;
+            isJumping = true; 
         }
         else if (collision.gameObject.CompareTag("Ladder"))
         {
             ladderFlag = false;
             onLadder = false;
-            rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder
-            
-            
+            rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
         }
     }
 

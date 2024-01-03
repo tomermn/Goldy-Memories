@@ -1,9 +1,11 @@
 
 using UnityEngine;
 
+/// <summary>
+/// Extends the functionality of AnimatedSprite to handle sprite animation specifically during climbing.
+/// </summary>
 public class ClimbingSprites : AnimatedSprite
 {
-    
     private PlayerMovement playerMovement;
 
 
@@ -15,7 +17,9 @@ public class ClimbingSprites : AnimatedSprite
         this.enabled = false;
     }
 
-
+    /// <summary>
+    /// Monitors the player's climbing state and enables/disables the component accordingly.
+    /// </summary>
     private void Update()
     {
         this.enabled = playerMovement.onLadder;

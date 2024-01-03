@@ -20,17 +20,18 @@ public class PlatformController : MonoBehaviour
         if (Vector2.Distance(transform.position,posB.position) < .1f) targetPos = posA.position;
 
         transform.position = Vector2.MoveTowards(transform.position, targetPos, platformSpeed * Time.deltaTime);
-        
     }
     
 
+
+    /*
+     * add docs to explain this mechanism (set and remove parent).
+     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if (collision.CompareTag("Player"))
         {
-            collision.transform.SetParent(this.transform);
-            
+            collision.transform.SetParent(this.transform);       
         }
     }
 
@@ -38,7 +39,6 @@ public class PlatformController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("exit moving");
             collision.transform.SetParent(null);
         }
     }

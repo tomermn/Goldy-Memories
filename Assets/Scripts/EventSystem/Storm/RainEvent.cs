@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.Port;
 
 public class RainEvent : MonoBehaviour
 {
@@ -15,9 +17,16 @@ public class RainEvent : MonoBehaviour
     private void Start()
     {
         rainParticleSystem.Stop();
-        //SpawnBoundaryRandomally();
     }
 
+    /*
+     * This function triggers a storm event when the player reaches a specific storm checkpoint.
+    The sequence of events is as follows:
+    1. The screen will darken, simulating clouds gathering.
+    2. A flash, resembling lightning, will occur.
+    3. The particle system will be invoked, leading to a raining event.
+
+     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hasTriggeredRain && collision.CompareTag("Player")) // Adjust the tag as needed
@@ -39,13 +48,11 @@ public class RainEvent : MonoBehaviour
     {
         rainParticleSystem.Play();
     }
-
-
-
     private IEnumerator FlashScreen()
     {
         lightning.SetActive(true);
 
+        //Parameters for adjusting the lightning opacity
         float startAlpha = 1f;
         float endAlpha = 0f;
         float elapsedTime = 0f;
@@ -53,7 +60,7 @@ public class RainEvent : MonoBehaviour
         while (elapsedTime < fadeDuration)
         {
             float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
-            setLightningAlpha(alpha, lightning);
+            SetLightningAlpha(alpha, lightning);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -64,7 +71,7 @@ public class RainEvent : MonoBehaviour
 
 
 
-    private void setLightningAlpha(float alpha, GameObject lightning)
+    private void SetLightningAlpha(float alpha, GameObject lightning)
     {
         SpriteRenderer spriteRenderer = lightning.GetComponent<SpriteRenderer>();
         Color spriteColor = spriteRenderer.color;
@@ -89,22 +96,6 @@ public class RainEvent : MonoBehaviour
 
 
 
-    /**
-     * this method randomally spawn the event at given points
-     */
-
-    //private void SpawnBoundaryRandomally()
-    //{
-    //    GameObject[] boundaryPoints = GameObject.FindGameObjectsWithTag("BoundaryPoint");
-    //    Debug.Log(boundaryPoints.Length);
-        // Choose a random available spawn point index.
-    //    int randomIndex = UnityEngine.Random.Range(0, boundaryPoints.Length);
-    //    Transform chosenSpawnPoint = boundaryPoints[randomIndex].transform;
-
-        // Set the position of the collectible to the chosen spawn point's position.
-    //    transform.position = chosenSpawnPoint.position;
-
-    //}
 
 
 

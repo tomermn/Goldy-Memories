@@ -1,18 +1,23 @@
 
 using UnityEngine;
 
+/// <summary>
+/// Represents an animated sprite component that cycles through an array of sprites at a specified frame rate.
+/// </summary>
 public class AnimatedSprite : MonoBehaviour
 {
-    public Sprite[] sprites;
+    public Sprite[] sprites;        // Array of sprites for animation.
     public float framerate =(1/6f);
 
     protected SpriteRenderer spriteRenderer;
     protected int frame;
 
+
     virtual protected void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
 
     protected void OnEnable()
     {
@@ -24,10 +29,12 @@ public class AnimatedSprite : MonoBehaviour
         CancelInvoke();
     }
 
+    /// <summary>
+    /// Advances the animation frame, looping back to the first frame when the end is reached.
+    /// </summary>
     protected void Animate()
     {
         frame++;
-        
 
         if (frame >= sprites.Length)
         {
