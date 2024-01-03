@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+/// <summary>
+/// Represents the result of a player's response in a memory test.
+/// </summary
 [System.Serializable]
 public class PlayerMemoryTestResult
 {

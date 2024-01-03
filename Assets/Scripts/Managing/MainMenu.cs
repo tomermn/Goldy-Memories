@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+/// <summary>
+/// Handles interactions and navigation within the main menu.
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     public void PlayGame()

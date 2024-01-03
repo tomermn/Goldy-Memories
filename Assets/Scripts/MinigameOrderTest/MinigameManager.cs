@@ -23,7 +23,9 @@ public class Pair
         this.second = second;
     }
 }
-
+/// <summary>
+/// Manages the execution and progression of the memory test minigame.
+/// </summary>
 public class MinigameManager : MonoBehaviour
 {
     public ItemDatabase itemDB;
@@ -64,7 +66,9 @@ public class MinigameManager : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Displays the images of the next pair of items in the test.
+    /// </summary>
     private void DisplayNextItems(int first, int second)
     {
         if (pairNumber == pairs.Length)
@@ -90,12 +94,11 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    
 
 
-
-
-
+    /// <summary>
+    /// Records the result of the player's response.
+    /// </summary>
     private void RecordResult(bool isCorrect)
     {
         string itemName1 = inventory.GetItemByIndex(pairs[pairNumber].first);
