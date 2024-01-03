@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+/// <summary>
+/// Represents a collectible item in the game that can be picked up by the player.
+/// </summary>
 public class Item : MonoBehaviour
 {
-    private static List<Transform> usedSpawnPoints = new List<Transform>();
-    private bool isCollected = false;
+    private static List<Transform> usedSpawnPoints = new List<Transform>(); // List of spawn points already used for item placement
+    private bool isCollected = false;                   // Flag indicating whether the item has been collected
 
 
     private void Start()
@@ -15,6 +18,9 @@ public class Item : MonoBehaviour
         SpawnRandomally();
     }
 
+    /// <summary>
+    /// Handles the item being triggered by the player.
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isCollected)
@@ -25,20 +31,23 @@ public class Item : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Collects the item, adds it to the player's inventory, and destroys the item object.
+    /// </summary>
     private void Collect(GameObject player)
     {
-        
         Inventory inventory = FindAnyObjectByType<Inventory>();
         if (inventory != null )
         {
-            
             inventory.AddToInvetory(this);
-            Destroy(gameObject);
-            //Debug.Log(this.name);
+            Destroy(gameObject);   
         }
         
     }
 
+    /// <summary>
+    /// Spawns the item at a random available spawn point.
+    /// </summary>
     private void SpawnRandomally()
     {
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("ItemSpawnPoint");

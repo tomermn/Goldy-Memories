@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Represents the data for a specific item in the game.
+/// </summary>
 [CreateAssetMenu(fileName = "ItemData", menuName = "Item Database/Item Data")]
 public class ItemData : ScriptableObject
 {
@@ -10,10 +13,4 @@ public class ItemData : ScriptableObject
 
     public string ItemName => itemName;
     public Sprite ItemSprite => itemSprite;
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

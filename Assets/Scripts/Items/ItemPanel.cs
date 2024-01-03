@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Represents a UI panel that displays a collected item's image when the player is collecting an item.
+/// </summary>
 public class ItemPanel : MonoBehaviour
 {
     public Image itemImage;
     private void Awake()
     {
         gameObject.SetActive(false);
-        
     }
 
-    // Update is called once per frame
+
+    /// <summary>
+    /// Displays the collected item's sprite on the item panel and activates it for a short duration.
+    /// </summary>
     public IEnumerator OnCollectingItem(Sprite sprite)
     {
-        Debug.Log("ENTERD");
         if (sprite != null)
         {
             itemImage.sprite = sprite;

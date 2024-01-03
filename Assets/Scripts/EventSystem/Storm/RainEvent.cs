@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.Port;
 
+
+/// <summary>
+/// Manages a rain event triggered when the player reaches a specific checkpoint.
+/// </summary>
 public class RainEvent : MonoBehaviour
 {
     public Image screenOverlay;
@@ -19,14 +23,10 @@ public class RainEvent : MonoBehaviour
         rainParticleSystem.Stop();
     }
 
-    /*
-     * This function triggers a storm event when the player reaches a specific storm checkpoint.
-    The sequence of events is as follows:
-    1. The screen will darken, simulating clouds gathering.
-    2. A flash, resembling lightning, will occur.
-    3. The particle system will be invoked, leading to a raining event.
-
-     */
+    /// <summary>
+    /// Triggers a storm event when the player reaches a specific checkpoint.
+    /// The sequence of events includes darkening the screen, simulating lightning, and invoking rain.
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hasTriggeredRain && collision.CompareTag("Player")) // Adjust the tag as needed
@@ -48,11 +48,15 @@ public class RainEvent : MonoBehaviour
     {
         rainParticleSystem.Play();
     }
+
+    /// <summary>
+    /// Coroutine for simulating a lightning flash with adjustable opacity.
+    /// </summary>
     private IEnumerator FlashScreen()
     {
         lightning.SetActive(true);
 
-        //Parameters for adjusting the lightning opacity
+        // Parameters for adjusting the lightning opacity
         float startAlpha = 1f;
         float endAlpha = 0f;
         float elapsedTime = 0f;
@@ -79,6 +83,9 @@ public class RainEvent : MonoBehaviour
         spriteRenderer.color = spriteColor;
     }
 
+    /// <summary>
+    /// Coroutine for darkening the screen during the storm.
+    /// </summary>
     private IEnumerator DarkenScreen()
     {
         float duration = 1f; // Adjust the duration as needed
