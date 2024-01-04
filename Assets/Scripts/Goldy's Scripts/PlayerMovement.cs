@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping = false;
     public bool ladderFlag = false;             // Indicates if the player is on a ladder.
     public bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
+    public bool isTouchingSpikes = false;
 
     // Input values
     public float moveHorizontal;
@@ -56,47 +57,50 @@ public class PlayerMovement : MonoBehaviour
     /// </summary
     private void FixedUpdate()
     {
-        Vector2 position = rigidbody.position;
-        position += velocity * Time.fixedDeltaTime;
+        if (!isTouchingSpikes) {
+            Vector2 position = rigidbody.position;
+            position += velocity * Time.fixedDeltaTime;
 
-        if (!ladderFlag)
-        {
-            // Handle regular movement
-            if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+            if (!ladderFlag)
             {
-                rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+                // Handle regular movement
+                if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+                {
+                    rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+                }
+
+                if (moveVertical > 0.1f && !isJumping)
+                {
+                    rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
+                    isJumping = true;
+
+                }
             }
 
-            if (moveVertical > 0.1f && !isJumping)
+            else
             {
-                rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
-                isJumping = true;
+                // Handle ladder climbing
+                rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
+                if (moveVertical != 0f)
+                {
+                    onLadder = true;
 
+                }
+            }
+
+            velocity.x = Mathf.MoveTowards(velocity.x, moveHorizontal * MoveSpeed, MoveSpeed);
+
+            // Set player rotation based on movement direction
+            if (velocity.x > 0)
+            {
+                transform.eulerAngles = Vector3.zero; // No rotation for right movement
+            }
+            else if (velocity.x < 0f) //Moving to the left
+            {
+                transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
         }
-
-        else
-        {
-            // Handle ladder climbing
-            rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
-            if (moveVertical != 0f)
-            {
-                onLadder = true;
-                
-            }
-        }
-
-        velocity.x = Mathf.MoveTowards(velocity.x, moveHorizontal * MoveSpeed, MoveSpeed);
-
-        // Set player rotation based on movement direction
-        if (velocity.x > 0)
-        {
-            transform.eulerAngles = Vector3.zero; // No rotation for right movement
-        }
-        else if (velocity.x < 0f) //Moving to the left
-        {
-            transform.eulerAngles = new Vector3(0f, 180f, 0f);
-        }
+        
     }
 
 
@@ -108,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         transform.position = GameManager.Instance.GetCheckpoint();
     }
+
+
 
     /// <summary>
     /// Handles interactions when the player collides with certain objects.
@@ -134,9 +140,42 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.tag == "DeathBarrier")
         {
             StartCoroutine(Respawn());
-            
         }
+
+        else if (collision.tag == "Spikes")
+        {
+            HandleSpikesCollision(collision);
+        }
+
     }
+
+    private void HandleSpikesCollision(Collider2D collision)
+    {
+        //step1: player lose control of the character
+        isTouchingSpikes = true;
+        rigidbody.velocity = new Vector2(0f, JumpForce);
+        //isJumping = true;
+        collision.enabled = false;
+
+        // Step 3: The character falls down the screen (through the spikes)
+        StartCoroutine(FallThroughSpikes(collision));
+        //step2: the character jumps into the air in idle mode
+        //step3: the character fall down the screen (through the spikes)
+        //step4: restart
+
+    }
+
+
+    private IEnumerator FallThroughSpikes(Collider2D collision)
+    {
+
+        // Wait for a short duration to simulate falling
+        yield return new WaitForSeconds(2f);
+        // Allow the player to regain control
+        isTouchingSpikes = false;
+        collision.enabled = true;
+    }
+
 
     /// <summary>
     /// Handles actions when the player exits collision with certain objects.
@@ -144,6 +183,8 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="collision">The collider from which the player has exited.</param>
     private void OnTriggerExit2D(Collider2D collision)
     {
+
+
         if (collision.gameObject.tag == "Platform")
         {
             isJumping = true; 
@@ -155,6 +196,9 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
         }
     }
+
+
+
 
 
 }
