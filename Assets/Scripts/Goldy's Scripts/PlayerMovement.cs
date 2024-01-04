@@ -121,59 +121,61 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="collision">The collider with which the player has collided.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (!isTouchingSpikes)
         {
-            isJumping = false;
+
+            switch (collision.gameObject.tag)
+            {
+                case Tags.Platform:
+                    isJumping = false;
+                    break;
+
+
+                case Tags.Ladder:
+                    ladderFlag = true;
+                    rigidbody.gravityScale = 0f;
+                    break;
+
+
+                case Tags.CheckPoint:
+                    GameManager.Instance.SetCheckpoint(collision.transform);
+                    break;
+
+
+                case Tags.Spikes:
+                    HandleSpikesCollision(collision);
+                    break;
+
+
+                default: break;
+
+            }
         }
 
-        else if (collision.gameObject.tag == "Ladder")
-        {
-            ladderFlag = true;
-            rigidbody.gravityScale = 0f;
-        }
-
-        else if (collision.tag == "CheckPoint")
-        {
-            GameManager.Instance.SetCheckpoint(collision.transform);
-        }
-
-        else if (collision.tag == "DeathBarrier")
+        if (collision.tag == Tags.DeathBarrier)
         {
             StartCoroutine(Respawn());
         }
-
-        else if (collision.tag == "Spikes")
-        {
-            HandleSpikesCollision(collision);
-        }
-
+   
     }
 
+
+    /// <summary>
+    /// Initiating a sequence of death and response when the player's touch spikes traps
+    /// </summary>
+    /// <param name="collision"></param>
     private void HandleSpikesCollision(Collider2D collision)
     {
-        //step1: player lose control of the character
         isTouchingSpikes = true;
-        rigidbody.velocity = new Vector2(0f, JumpForce);
-        //isJumping = true;
-        collision.enabled = false;
-
-        // Step 3: The character falls down the screen (through the spikes)
+        rigidbody.velocity = new Vector2(0f, JumpForce); 
         StartCoroutine(FallThroughSpikes(collision));
-        //step2: the character jumps into the air in idle mode
-        //step3: the character fall down the screen (through the spikes)
-        //step4: restart
-
     }
 
 
     private IEnumerator FallThroughSpikes(Collider2D collision)
     {
-
-        // Wait for a short duration to simulate falling
         yield return new WaitForSeconds(2f);
-        // Allow the player to regain control
-        isTouchingSpikes = false;
-        collision.enabled = true;
+        isTouchingSpikes = false; 
     }
 
 
@@ -185,11 +187,11 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == Tags.Platform)
         {
             isJumping = true; 
         }
-        else if (collision.gameObject.CompareTag("Ladder"))
+        else if (collision.gameObject.CompareTag(Tags.Ladder))
         {
             ladderFlag = false;
             onLadder = false;

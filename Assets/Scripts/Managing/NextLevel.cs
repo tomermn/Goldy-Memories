@@ -9,7 +9,7 @@ public class NextLevel : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") == true)
+        if (collision.CompareTag(Tags.Player) == true)
         {
             GameManager.Instance.NextLevel();
         }

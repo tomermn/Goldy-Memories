@@ -156,7 +156,7 @@ public class MinigameManager : MonoBehaviour
         {
             SaveResultsToCSV();
         }
-        title.text = "Game Over";
+        title.text = Tags.GameOverTitle;
         image1.gameObject.SetActive(false);
         image2.gameObject.SetActive(false);
 

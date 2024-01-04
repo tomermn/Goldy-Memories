@@ -29,7 +29,7 @@ public class RainEvent : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!hasTriggeredRain && collision.CompareTag("Player")) // Adjust the tag as needed
+        if (!hasTriggeredRain && collision.CompareTag(Tags.Player)) // Adjust the tag as needed
         {
             StartCoroutine(DarkenScreen());
             StartCoroutine(FlashScreen());
