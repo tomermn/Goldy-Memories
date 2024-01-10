@@ -8,11 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class ProgressBar : MonoBehaviour
 {
-    private Slider slider;
-    
-
-    
-    void Awake()
+    private Slider slider;  
+    private void Awake()
     {
         slider  = GetComponent<Slider>(); 
         slider.value = 0;

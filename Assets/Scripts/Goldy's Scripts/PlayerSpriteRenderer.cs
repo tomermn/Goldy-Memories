@@ -10,13 +10,21 @@ public class PlayerSpriteRenderer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PlayerMovement playerMovement;
 
-    public Sprite idle;
-    public Sprite jump;
-    public Sprite climbingState;
-    //public Sprite onLadder; an idle state on ladder - option
+    [SerializeField]
+    private Sprite idle;
 
-    public AnimatedSprite run;
-    public AnimatedSprite climb;
+    [SerializeField]
+    private Sprite jump;
+
+    [SerializeField]
+    private Sprite climbingState;
+
+    //public Sprite onLadder; an idle state on ladder - option
+    [SerializeField]
+    private AnimatedSprite run;
+
+    [SerializeField]
+    private AnimatedSprite climb;
 
 
     /// <summary>
@@ -45,16 +53,16 @@ public class PlayerSpriteRenderer : MonoBehaviour
     private void LateUpdate()
     {
         // Set running animation based on player's running state and not on a ladder.
-        run.enabled = playerMovement.running && !playerMovement.onLadder;
+        run.enabled = playerMovement.Running && !playerMovement.OnLadder;
 
         // Set jumping sprite when the player is jumping and not on a ladder.
-        if (playerMovement.isJumping && !playerMovement.ladderFlag)
+        if (playerMovement.IsJumping && !playerMovement.LadderFlag)
         {
             spriteRenderer.sprite = jump;
         }
 
         // Set climbing animation when the player is on a ladder and moving vertically.
-        else if (playerMovement.onLadder && playerMovement.isMovingVertical)
+        else if (playerMovement.OnLadder && playerMovement.IsMovingVertical)
         {
             run.enabled = false;
             climb.enabled = true;
@@ -62,14 +70,14 @@ public class PlayerSpriteRenderer : MonoBehaviour
         }
 
         // Set idle Climbe sprite
-        else if (playerMovement.onLadder) 
+        else if (playerMovement.OnLadder) 
         {
             spriteRenderer.sprite = climbingState;
             //spriteRenderer.sprite = onLadder; an option
         }
 
         // Set idle "default" sprite
-        else if (!playerMovement.running)
+        else if (!playerMovement.Running)
         {
             spriteRenderer.sprite = idle;
         }

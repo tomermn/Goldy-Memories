@@ -10,12 +10,14 @@ using static UnityEditor.Experimental.GraphView.Port;
 /// </summary>
 public class RainEvent : MonoBehaviour
 {
-    public Image screenOverlay;
-    public ParticleSystem rainParticleSystem;
-    public GameObject lightning;
-    public float flashDuration = 1f;
-    public float fadeDuration = 1.5f;
-
+    [SerializeField]
+    private Image screenOverlay;
+    [SerializeField]
+    private ParticleSystem rainParticleSystem;
+    [SerializeField]
+    private GameObject lightning;
+    private float flashDuration = 1f;
+    private float fadeDuration = 1.5f;
     private bool hasTriggeredRain = false;
 
     private void Start()

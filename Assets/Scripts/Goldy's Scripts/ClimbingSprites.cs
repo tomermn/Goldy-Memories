@@ -22,6 +22,6 @@ public class ClimbingSprites : AnimatedSprite
     /// </summary>
     private void Update()
     {
-        this.enabled = playerMovement.onLadder;
+        this.enabled = playerMovement.OnLadder;
     }
 }

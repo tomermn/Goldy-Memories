@@ -15,10 +15,46 @@ public class GameManager : MonoBehaviour
 
     public int lives { get; private set; }
 
-    public int n_items_to_collect;
+    [SerializeField]
+    private int n_items_to_collect;
 
     private Vector2 respawnPoint;
 
+
+    /// <summary>
+    /// Starts a new game by setting the initial number of lives and loading the first level.
+    /// </summary>
+    public void NewGame()
+    {
+        lives = 1;
+        LoadLevel(1, 1);
+    }
+
+    /// <summary>
+    /// Initiates the transition to the next level after a specified delay.
+    /// </summary>
+    public void NextLevel(float delay)
+    {
+        Invoke(nameof(NextLevel), delay);
+    }
+
+    public Vector2 GetCheckpoint()
+    {
+        return respawnPoint;
+    }
+
+    /// <summary>
+    /// Sets the respawn point to the specified checkpoint position.
+    /// </summary>
+    public void SetCheckpoint(Transform checkpoint)
+    {
+        respawnPoint = (Vector2)checkpoint.position + new Vector2(0, 2); // Spawn a little bit higher than the ground
+    }
+
+    private void Start()
+    {
+        NewGame();
+    }
 
     /// <summary>
     /// Initializes the GameManager singleton instance and sets the initial respawn point.
@@ -38,52 +74,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Handles the destruction of the GameManager instance.
-    /// </summary>
-    private void OnDestroy() 
-    {
-        if (Instance == this)
-        {
-            Instance = null;
-        }
-    }
-
-    private void Start()
-    {
-        NewGame();
-    }
-
-    /// <summary>
-    /// Starts a new game by setting the initial number of lives and loading the first level.
-    /// </summary>
-    private void NewGame()
-    {
-        lives = 1;
-        LoadLevel(1, 1);
-    }
-
-    /// <summary>
-    /// Loads the specified level and phase.
-    /// </summary>
-    private void LoadLevel(int level, int phase)
-    {
-        this.level = level;
-        this.phase = phase;
-       
-        SceneManager.LoadScene($"{level}-{phase}"); 
-    }
-
-    /// <summary>
-    /// Initiates the transition to the next level after a specified delay.
-    /// </summary>
-    public void NextLevel(float delay)
-    {
-        Invoke(nameof(NextLevel), delay);
-        SceneManager.LoadScene("MinigameOrderTest");
-    }
-
-    public void NextLevel()
+    private void NextLevel()
     {
         SceneManager.LoadScene("MinigameOrderTest");
         // OPTIONAL: multilevel game
@@ -101,15 +92,37 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles the destruction of the GameManager instance.
+    /// </summary>
+    private void OnDestroy() 
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    /// <summary>
+    /// Loads the specified level and phase.
+    /// </summary>
+    private void LoadLevel(int level, int phase)
+    {
+        this.level = level;
+        this.phase = phase;
+       
+        SceneManager.LoadScene($"{level}-{phase}"); 
+    }
+
+    /// <summary>
     /// Resets the current level after a specified delay (Optional for future use).
     /// </summary>
-    public void ResetLevel(float delay)
+    private void ResetLevel(float delay)
     {
         Invoke(nameof(ResetLevel), delay);
     }
 
 
-    public void ResetLevel()
+    private void ResetLevel()
     {
         lives--;
         if (lives > 0)
@@ -125,26 +138,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Handles the game over scenario (Optional for future use).
     /// </summary>
-    public void GameOver()
+    private void GameOver()
     {
         NewGame();
     }
 
-    /// <summary>
-    /// Sets the respawn point to the specified checkpoint position.
-    /// </summary>
-    public void SetCheckpoint(Transform checkpoint)
-    {
-        respawnPoint = (Vector2) checkpoint.position + new Vector2(0, 2); // Spawn a little bit higher than the ground
-    }
-
-
-    /// <summary>
-    /// Gets the current respawn point.
-    /// </summary>
-    public Vector2 GetCheckpoint()
-    {
-        return respawnPoint;
-    }
+    
 
 }

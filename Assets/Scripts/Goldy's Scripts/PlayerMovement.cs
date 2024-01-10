@@ -14,23 +14,35 @@ public class PlayerMovement : MonoBehaviour
     private new Rigidbody2D rigidbody;
 
     // Movement parameters
-    public float MoveSpeed = 1f;                //Player's movement speed parameter
-    public float LadderClimbSpeed = 5f;         //Player's climbing speed parameter
-    public float JumpForce = 60f;               //Player's jump force parameter
+    [SerializeField]
+    private float MoveSpeed = 1f;                //Player's movement speed parameter
+
+    [SerializeField]
+    private float LadderClimbSpeed = 5f;         //Player's climbing speed parameter
+
+    [SerializeField]
+    private float JumpForce = 60f;               //Player's jump force parameter
 
     // Flags for player state
-    public bool isJumping = false;
-    public bool ladderFlag = false;             // Indicates if the player is on a ladder.
-    public bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
-    public bool isTouchingSpikes = false;
+    private bool isJumping = false;
+    private bool ladderFlag = false;             // Indicates if the player is on a ladder.
+    private bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
+    private bool isTouchingSpikes = false;
 
     // Input values
-    public float moveHorizontal;
-    public float moveVertical;
+    private float moveHorizontal;
+    private float moveVertical;
 
     // Properties for additional state's information
-    public bool running => Mathf.Abs(moveHorizontal) > 0f;
-    public bool isMovingVertical => Mathf.Abs(moveVertical) > 0f;
+    public bool Running => Mathf.Abs(moveHorizontal) > 0f;
+    public bool IsMovingVertical => Mathf.Abs(moveVertical) > 0f;
+
+    public bool IsJumping => isJumping;
+
+    public bool LadderFlag => ladderFlag;
+
+    public bool OnLadder => onLadder;
+    public bool IsTouchingSpikes => isTouchingSpikes;
 
 
 
@@ -63,44 +75,54 @@ public class PlayerMovement : MonoBehaviour
 
             if (!ladderFlag)
             {
-                // Handle regular movement
-                if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
-                {
-                    rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
-                }
-
-                if (moveVertical > 0.1f && !isJumping)
-                {
-                    rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
-                    isJumping = true;
-
-                }
+                HandleRegularMovement();
             }
 
             else
             {
                 // Handle ladder climbing
-                rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
-                if (moveVertical != 0f)
-                {
-                    onLadder = true;
-
-                }
+                HandleLadderClimbing();
             }
 
             velocity.x = Mathf.MoveTowards(velocity.x, moveHorizontal * MoveSpeed, MoveSpeed);
-
-            // Set player rotation based on movement direction
-            if (velocity.x > 0)
-            {
-                transform.eulerAngles = Vector3.zero; // No rotation for right movement
-            }
-            else if (velocity.x < 0f) //Moving to the left
-            {
-                transform.eulerAngles = new Vector3(0f, 180f, 0f);
-            }
+            HandleRotation();
         }
         
+    }
+
+    private void HandleRegularMovement()
+    {
+        if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+        {
+            rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+        }
+
+        if (moveVertical > 0.1f && !isJumping)
+        {
+            rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
+            isJumping = true;
+        }
+    }
+
+    private void HandleLadderClimbing()
+    {
+        rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
+        if (moveVertical != 0f)
+        {
+            onLadder = true;
+        }
+    }
+
+    private void HandleRotation()
+    {
+        if (velocity.x > 0)
+        {
+            transform.eulerAngles = Vector3.zero; // No rotation for right movement
+        }
+        else if (velocity.x < 0f) //Moving to the left
+        {
+            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+        }
     }
 
 
@@ -186,7 +208,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-
         if (collision.gameObject.tag == Tags.Platform)
         {
             isJumping = true; 
@@ -198,9 +219,4 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
         }
     }
-
-
-
-
-
 }

@@ -8,17 +8,13 @@ using UnityEngine.UI;
 /// </summary>
 public class ItemPanel : MonoBehaviour
 {
-    public Image itemImage;
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
-
+    [SerializeField]
+    private Image itemImage;
 
     /// <summary>
     /// Displays the collected item's sprite on the item panel and activates it for a short duration.
     /// </summary>
-    public IEnumerator OnCollectingItem(Sprite sprite)
+    public IEnumerator DisplayPanel (Sprite sprite)
     {
         if (sprite != null)
         {
@@ -28,4 +24,13 @@ public class ItemPanel : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
+
+ 
+    
 }

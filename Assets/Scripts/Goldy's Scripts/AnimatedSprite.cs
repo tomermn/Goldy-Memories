@@ -6,9 +6,10 @@ using UnityEngine;
 /// </summary>
 public class AnimatedSprite : MonoBehaviour
 {
-    public Sprite[] sprites;        // Array of sprites for animation.
-    public float framerate =(1/6f);
-
+    [SerializeField]
+    private Sprite[] sprites;        // Array of sprites for animation.
+    [SerializeField]
+    protected float framerate;
     protected SpriteRenderer spriteRenderer;
     protected int frame;
 

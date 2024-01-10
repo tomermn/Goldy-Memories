@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-
-    public Transform posA, posB;
-    public int platformSpeed;
-    Vector2 targetPos;
-    // Start is called before the first frame update
+    [SerializeField]
+    private Transform posA, posB;
+    [SerializeField]
+    private int platformSpeed;
+    [SerializeField]
+    private Vector2 targetPos;
+    
     void Start()
     {
         targetPos = posB.position;

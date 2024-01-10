@@ -11,7 +11,7 @@ public class NextLevel : MonoBehaviour
     {
         if (collision.CompareTag(Tags.Player) == true)
         {
-            GameManager.Instance.NextLevel();
+            GameManager.Instance.NextLevel(0);
         }
     }
 }
