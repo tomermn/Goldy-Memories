@@ -9,12 +9,19 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMemoryTestResult
 {
-    public string item1Name;
-    public string item2Name;
-    public int item1Index;
-    public int item2Index;
-    public bool isPlayerCorrect;
-    public float pressTime;
+    private string item1Name;
+    private string item2Name;
+    private int item1Index;
+    private int item2Index;
+    private bool isPlayerCorrect;
+    private float pressTime;
+
+    public string Item1Name => item1Name;
+    public string Item2Name => item2Name;
+    public int Item1Index => item1Index;
+    public int Item2Index => item2Index;
+    public bool IsPlayerCorrect => isPlayerCorrect;
+    public float PressTime => pressTime;
 
 
     public PlayerMemoryTestResult(string item1Name, string item2Name, int item1Index, int item2Index, bool isPlayerCorrect, float pressTime)

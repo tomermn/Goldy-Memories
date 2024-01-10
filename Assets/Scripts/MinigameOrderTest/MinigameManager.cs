@@ -11,59 +11,84 @@ using UnityEngine.UI;
 
 
 
+
+
 [System.Serializable]
 public class Pair
 {
-    public int first;
-    public int second;
+    private int first;
+    private int second;
 
     public Pair(int first, int second)
     {
         this.first = first;
         this.second = second;
     }
+
+    public int First => first;
+    public int Second => second;
 }
 /// <summary>
 /// Manages the execution and progression of the memory test minigame.
 /// </summary>
 public class MinigameManager : MonoBehaviour
 {
-    public ItemDatabase itemDB;
-    public Inventory inventory;
-    public TextMeshProUGUI title;
-    public Image image1;
-    public Image image2;
-    public Button button1;
-    public Button button2;
-    public int pairNumber;
-    public int correctAnswer;
-    public float timeDisplay;
-    public float timePressed;
-    public bool toSaveStats;
+    [SerializeField]
+    private ItemDatabase itemDB;
+
+    [SerializeField]
+    private Inventory inventory;
+
+    [SerializeField]
+    private TextMeshProUGUI title;
+
+    [SerializeField]
+    private Image image1;
+
+    [SerializeField]
+    private Image image2;
+
+    [SerializeField]
+    private Button button1;
+
+    [SerializeField]
+    private Button button2;
+
+    [SerializeField]
+    private int pairNumber;
+
+    [SerializeField]
+    private int correctAnswer;
+
+    [SerializeField]
+    private float timeDisplay;
+
+    [SerializeField]
+    private float timePressed;
+
+    [SerializeField]
+    private bool toSaveStats;
+
+    [SerializeField]
     private int numCorrect;
+
+    [SerializeField]
+    private Pair[] pairs;
 
     private List<PlayerMemoryTestResult> results = new List<PlayerMemoryTestResult>();
 
 
-    [SerializeField] public Pair[] pairs;
-
     private void Start()
     {
-        
         inventory = Inventory.Instance;
-        pairNumber = 0;
         StartCoroutine(PlayMinigame());
-        
-        
     }
 
     private IEnumerator PlayMinigame()
     {
         yield return new WaitForSeconds(3f);
         Pair currentPair = pairs[pairNumber];
-        DisplayNextItems(currentPair.first, currentPair.second);
-        
-
+        DisplayNextItems(currentPair.First, currentPair.Second);
     }
 
     /// <summary>
@@ -101,11 +126,11 @@ public class MinigameManager : MonoBehaviour
     /// </summary>
     private void RecordResult(bool isCorrect)
     {
-        string itemName1 = inventory.GetItemByIndex(pairs[pairNumber].first);
-        string itemName2 = inventory.GetItemByIndex(pairs[pairNumber].second);
+        string itemName1 = inventory.GetItemByIndex(pairs[pairNumber].First);
+        string itemName2 = inventory.GetItemByIndex(pairs[pairNumber].Second);
         float timePassed = timePressed - timeDisplay;
 
-        PlayerMemoryTestResult result = new PlayerMemoryTestResult(itemName1, itemName2, pairs[pairNumber].first, pairs[pairNumber].second, isCorrect, timePassed);
+        PlayerMemoryTestResult result = new PlayerMemoryTestResult(itemName1, itemName2, pairs[pairNumber].First, pairs[pairNumber].Second, isCorrect, timePassed);
         results.Add(result);
     }
 
@@ -131,7 +156,7 @@ public class MinigameManager : MonoBehaviour
         }
         RecordResult(isCorrect);
         ContinueToNextPair();
-        
+
     }
 
     private void SaveResultsToCSV()
@@ -143,7 +168,7 @@ public class MinigameManager : MonoBehaviour
 
             foreach (PlayerMemoryTestResult result in results)
             {
-                string line = $"{result.item1Name},{result.item2Name},{result.item1Index},{result.item2Index},{result.isPlayerCorrect},{result.pressTime}";
+                string line = $"{result.Item1Name},{result.Item2Name},{result.Item1Index},{result.Item2Index},{result.IsPlayerCorrect},{result.PressTime}";
                 writer.WriteLine(line);
             }
         }
@@ -161,11 +186,11 @@ public class MinigameManager : MonoBehaviour
         image2.gameObject.SetActive(false);
 
         Application.Quit();
-         
+
 
     }
 
-    public void ContinueToNextPair()
+    private void ContinueToNextPair()
     {
         pairNumber++;
         if (pairNumber == pairs.Length)
@@ -177,7 +202,7 @@ public class MinigameManager : MonoBehaviour
             return;
         }
         Pair currentPair = pairs[pairNumber];
-        DisplayNextItems(currentPair.first, currentPair.second);
+        DisplayNextItems(currentPair.First, currentPair.Second);
     }
 }
 
