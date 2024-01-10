@@ -610,15 +610,18 @@ MonoBehaviour:
   timeDisplay: 0
   timePressed: 0
   toSaveStats: 0
+  numCorrect: 0
   pairs:
   - first: 0
     second: 3
+  - first: 1
+    second: 4
+  - first: 3
+    second: 2
   - first: 2
     second: 1
   - first: 4
     second: 3
-  - first: 2
-    second: 4
 --- !u!1 &1060793443
 GameObject:
   m_ObjectHideFlags: 0

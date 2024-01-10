@@ -16,7 +16,10 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Pair
 {
+    [SerializeField]
     private int first;
+
+    [SerializeField]
     private int second;
 
     public Pair(int first, int second)
