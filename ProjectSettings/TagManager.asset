@@ -11,6 +11,8 @@ TagManager:
   - CheckPoint
   - DeathBarrier
   - Spikes
+  - book1
+  - BookForMinigame1
   layers:
   - Default
   - TransparentFX

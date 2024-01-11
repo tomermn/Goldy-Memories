@@ -218,5 +218,10 @@ public class PlayerMovement : MonoBehaviour
             onLadder = false;
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
         }
+
+        else if (collision.gameObject.CompareTag(Tags.Book1))
+        {
+            GameManager.Instance.PlayMinigame();
+        }
     }
 }

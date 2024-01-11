@@ -78,17 +78,33 @@ public class MinigameManager : MonoBehaviour
     [SerializeField]
     private Pair[] pairs;
 
+    [SerializeField]
+
+    private GameObject book;
+    private Book bookComponent;
+
     private List<PlayerMemoryTestResult> results = new List<PlayerMemoryTestResult>();
+
+
+
 
 
     private void Start()
     {
-        inventory = Inventory.Instance;
-        StartCoroutine(PlayMinigame());
+/*        inventory = Inventory.Instance;
+        StartCoroutine(PlayMinigame());*/
     }
 
-    private IEnumerator PlayMinigame()
+    public IEnumerator PlayMinigame()
     {
+        Debug.Log("get to here 0");
+
+        // TODO - Problem - cant get the cover for the book
+        GameObject bookCover = GameObject.FindGameObjectsWithTag(Tags.BookForMinigame1)[0];
+        Debug.Log("get to here 1");
+        bookCover.SetActive(true);
+        Debug.Log("get to here 2");
+        inventory = Inventory.Instance;
         yield return new WaitForSeconds(3f);
         Pair currentPair = pairs[pairNumber];
         DisplayNextItems(currentPair.First, currentPair.Second);

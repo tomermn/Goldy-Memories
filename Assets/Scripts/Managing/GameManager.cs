@@ -67,6 +67,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; 
     }
 
+    public void PlayMinigame()
+    {
+        PauseGame();
+        MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
+        if (minigameManager != null)
+        {
+            StartCoroutine(minigameManager.PlayMinigame());
+        }
+
+    }
+
     private void Start()
     {
         NewGame();

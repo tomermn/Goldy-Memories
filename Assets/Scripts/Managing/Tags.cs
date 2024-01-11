@@ -12,6 +12,8 @@ public static class Tags
     public const string Spikes = "Spikes";
     public const string DeathBarrier = "DeathBarrier";
     public const string ItemSpawnPoint = "ItemSpawnPoint";
+    public const string Book1 = "book1";
+    public const string BookForMinigame1 = "BookForMinigame1";
 
     // Consts for Minigame
     public const string GameOverTitle = "Game Over";
