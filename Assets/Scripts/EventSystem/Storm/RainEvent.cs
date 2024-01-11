@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.Port;
+
 
 
 /// <summary>
@@ -12,10 +11,13 @@ public class RainEvent : MonoBehaviour
 {
     [SerializeField]
     private Image screenOverlay;
+
     [SerializeField]
     private ParticleSystem rainParticleSystem;
+
     [SerializeField]
     private GameObject lightning;
+
     private float flashDuration = 1f;
     private float fadeDuration = 1.5f;
     private bool hasTriggeredRain = false;

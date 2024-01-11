@@ -6,10 +6,12 @@ using UnityEngine;
 /// </summary>
 public class AnimatedSprite : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField]  
     private Sprite[] sprites;        // Array of sprites for animation.
+    
     [SerializeField]
     protected float framerate;
+    
     protected SpriteRenderer spriteRenderer;
     protected int frame;
 
