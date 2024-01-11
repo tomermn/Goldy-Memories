@@ -188,7 +188,7 @@ public class MinigameManager : MonoBehaviour
         image1.gameObject.SetActive(false);
         image2.gameObject.SetActive(false);
 
-        Application.Quit();
+        GameManager.Instance.ResumeGame();
 
 
     }

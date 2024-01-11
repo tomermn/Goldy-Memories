@@ -51,6 +51,22 @@ public class GameManager : MonoBehaviour
         respawnPoint = (Vector2)checkpoint.position + new Vector2(0, 2); // Spawn a little bit higher than the ground
     }
 
+    /// <summary>
+    /// Pause the game.
+    /// </summary>
+    public void PauseGame()
+    {
+        Time.timeScale = 0; // Pause the game
+    }
+
+    /// <summary>
+    /// Resume the game.
+    /// </summary>
+    public void ResumeGame()
+    {
+        Time.timeScale = 1; 
+    }
+
     private void Start()
     {
         NewGame();
