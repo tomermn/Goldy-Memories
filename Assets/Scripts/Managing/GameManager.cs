@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } // Gets the singleton instance of the GameManager.
 
+    public MinigameManager MinigameManager;
+
     public int level { get; private set; }
 
     public int phase { get; private set; }
@@ -69,13 +71,10 @@ public class GameManager : MonoBehaviour
 
     public void PlayMinigame()
     {
+        Debug.Log("enter to the playMinigame method of GameManager. it means the that activation of the minigame from the Instance is working well.");
         PauseGame();
-        MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
-        if (minigameManager != null)
-        {
-            StartCoroutine(minigameManager.PlayMinigame());
-        }
-
+        StartCoroutine(MinigameManager.PlayMinigame());
+        
     }
 
     private void Start()

@@ -221,6 +221,8 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.CompareTag(Tags.Book1))
         {
+
+            Debug.Log("enter to players movement -> collision.gameObject.CompareTag(Tags.Book1). it means that the tag of the book is working.");
             GameManager.Instance.PlayMinigame();
         }
     }

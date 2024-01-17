@@ -13,6 +13,7 @@ TagManager:
   - Spikes
   - book1
   - BookForMinigame1
+  - AC
   layers:
   - Default
   - TransparentFX

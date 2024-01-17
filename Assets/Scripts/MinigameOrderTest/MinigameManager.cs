@@ -79,9 +79,8 @@ public class MinigameManager : MonoBehaviour
     private Pair[] pairs;
 
     [SerializeField]
-
     private GameObject book;
-    private Book bookComponent;
+    
 
     private List<PlayerMemoryTestResult> results = new List<PlayerMemoryTestResult>();
 
@@ -97,17 +96,14 @@ public class MinigameManager : MonoBehaviour
 
     public IEnumerator PlayMinigame()
     {
-        Debug.Log("get to here 0");
-
-        // TODO - Problem - cant get the cover for the book
-        /*GameObject bookCover = GameObject.FindGameObjectsWithTag(Tags.BookForMinigame1)[0];
-        Debug.Log("get to here 1");
-        bookCover.SetActive(true);
-        Debug.Log("get to here 2");*/
+        Debug.Log("we start the playMinigame method in the MinigameManager script");
+        Debug.Log("success on extract the book cover");
+        book.SetActive(true);
+        Debug.Log("success on activate the book cover");
         inventory = Inventory.Instance;
         yield return new WaitForSeconds(3f);
-        Pair currentPair = pairs[pairNumber];
-        DisplayNextItems(currentPair.First, currentPair.Second);
+/*        Pair currentPair = pairs[pairNumber];
+        DisplayNextItems(currentPair.First, currentPair.Second);*/
     }
 
     /// <summary>
