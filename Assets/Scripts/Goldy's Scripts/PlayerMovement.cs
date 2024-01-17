@@ -168,6 +168,12 @@ public class PlayerMovement : MonoBehaviour
                     HandleSpikesCollision(collision);
                     break;
 
+                case "InvokeMinigame1":
+                    Debug.Log("identifing the invoker tag");
+                    GameManager.Instance.InvokeMinigame();
+                    break;
+
+
 
                 default: break;
 
@@ -217,6 +223,10 @@ public class PlayerMovement : MonoBehaviour
             ladderFlag = false;
             onLadder = false;
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
+        }
+        else if (collision.gameObject.CompareTag("InvokeMinigame1"))
+        {
+            
         }
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - CheckPoint
   - DeathBarrier
   - Spikes
+  - InvokeMinigame1
   layers:
   - Default
   - TransparentFX

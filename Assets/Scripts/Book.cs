@@ -14,6 +14,13 @@ public class Book : MonoBehaviour
     private void Start()
     {
         InitialState();
+        //gameObject.SetActive(false);
+    }
+
+
+    public void DisplayBook()
+    {
+        gameObject.SetActive(true);
     }
 
     public void InitialState()

@@ -36,6 +36,8 @@ public class Pair
 /// </summary>
 public class MinigameManager : MonoBehaviour
 {
+    public static MinigameManager Instance;
+
     [SerializeField]
     private ItemDatabase itemDB;
 
@@ -78,14 +80,55 @@ public class MinigameManager : MonoBehaviour
     [SerializeField]
     private Pair[] pairs;
 
+    [SerializeField]
+    private Book book;
+
     private List<PlayerMemoryTestResult> results = new List<PlayerMemoryTestResult>();
 
-
-    private void Start()
+    /// <summary>
+    /// Initializes the GameManager singleton instance and sets the initial respawn point.
+    /// </summary>
+    private void Awake()
     {
-        inventory = Inventory.Instance;
-        StartCoroutine(PlayMinigame());
+        if (Instance != null) //is there already an instance available
+        {
+            DestroyImmediate(gameObject);
+
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(book.gameObject);
+        }
     }
+
+    private void Update()
+    {
+        if (book != null)
+        {
+            Debug.Log("book is alive");
+        }
+        if (gameObject != null)
+        {
+            Debug.Log("minigame manager is alive is alive");
+        }
+        
+    }
+
+
+
+    public void StartMinigame()
+    {
+        Debug.Log("enterd to startMinigame func in the minigame manager");
+        book.DisplayBook();
+        
+
+        /*inventory = Inventory.Instance;
+        StartCoroutine(PlayMinigame());*/
+    }
+
+
 
     private IEnumerator PlayMinigame()
     {

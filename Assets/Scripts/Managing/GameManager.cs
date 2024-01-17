@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } // Gets the singleton instance of the GameManager.
 
+    [SerializeField]
+    private MinigameManager minigameManager;
+
     public int level { get; private set; }
 
     public int phase { get; private set; }
@@ -55,6 +58,15 @@ public class GameManager : MonoBehaviour
     {
         NewGame();
     }
+
+
+    public void InvokeMinigame()
+    {
+        Debug.Log("enterd to InvokeMinigame Func");
+        MinigameManager.Instance.StartMinigame();
+    }
+
+
 
     /// <summary>
     /// Initializes the GameManager singleton instance and sets the initial respawn point.
