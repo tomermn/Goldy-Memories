@@ -100,10 +100,10 @@ public class MinigameManager : MonoBehaviour
         Debug.Log("get to here 0");
 
         // TODO - Problem - cant get the cover for the book
-        GameObject bookCover = GameObject.FindGameObjectsWithTag(Tags.BookForMinigame1)[0];
+        /*GameObject bookCover = GameObject.FindGameObjectsWithTag(Tags.BookForMinigame1)[0];
         Debug.Log("get to here 1");
         bookCover.SetActive(true);
-        Debug.Log("get to here 2");
+        Debug.Log("get to here 2");*/
         inventory = Inventory.Instance;
         yield return new WaitForSeconds(3f);
         Pair currentPair = pairs[pairNumber];
