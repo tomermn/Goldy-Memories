@@ -36,7 +36,7 @@ public class Pair
 /// </summary>
 public class MinigameManager : MonoBehaviour
 {
-    public static MinigameManager Instance;
+    public static MinigameManager Instance { get; private set; }
 
     [SerializeField]
     private ItemDatabase itemDB;
@@ -90,6 +90,7 @@ public class MinigameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        Debug.Log("Is book null? " + (book == null));
         if (Instance != null) //is there already an instance available
         {
             DestroyImmediate(gameObject);
@@ -105,21 +106,13 @@ public class MinigameManager : MonoBehaviour
 
     private void Update()
     {
-        if (book != null)
-        {
-            Debug.Log("book is alive");
-        }
-        if (gameObject != null)
-        {
-            Debug.Log("minigame manager is alive is alive");
-        }
-        
     }
 
 
 
     public void StartMinigame()
     {
+        Debug.Log("3.Is book null? " + (book == null));
         Debug.Log("enterd to startMinigame func in the minigame manager");
         book.DisplayBook();
         

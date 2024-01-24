@@ -9,14 +9,10 @@ using UnityEngine.UI;
 /// </summary>
 public class RainEvent : MonoBehaviour
 {
-    [SerializeField]
-    private Image screenOverlay;
 
-    [SerializeField]
-    private ParticleSystem rainParticleSystem;
-
-    [SerializeField]
-    private GameObject lightning;
+    [SerializeField] private Image screenOverlay;
+    [SerializeField] private ParticleSystem rainParticleSystem;
+    [SerializeField] private GameObject lightning;
 
     private float flashDuration = 1f;
     private float fadeDuration = 1.5f;

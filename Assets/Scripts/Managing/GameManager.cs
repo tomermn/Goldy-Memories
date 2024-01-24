@@ -1,4 +1,5 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // required for loading a scene
 
@@ -9,8 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } // Gets the singleton instance of the GameManager.
 
-    [SerializeField]
-    private MinigameManager minigameManager;
 
     public int level { get; private set; }
 
@@ -46,6 +45,20 @@ public class GameManager : MonoBehaviour
         return respawnPoint;
     }
 
+    public void StartMinigame1()
+    {
+
+        Debug.Log("Enter to startMinigame1 on game Manager");
+        //Time.timeScale = 0f; Debug.Log("just pause the game");
+        MinigameManager.Instance.StartMinigame();
+
+    }
+
+    private void TogglePause()
+    {
+
+    }
+
     /// <summary>
     /// Sets the respawn point to the specified checkpoint position.
     /// </summary>
@@ -60,11 +73,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void InvokeMinigame()
-    {
-        Debug.Log("enterd to InvokeMinigame Func");
-        MinigameManager.Instance.StartMinigame();
-    }
 
 
 

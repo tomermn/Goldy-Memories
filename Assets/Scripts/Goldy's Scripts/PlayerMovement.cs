@@ -169,8 +169,10 @@ public class PlayerMovement : MonoBehaviour
                     break;
 
                 case "InvokeMinigame1":
-                    Debug.Log("identifing the invoker tag");
-                    GameManager.Instance.InvokeMinigame();
+                    Debug.Log("we have a triger between invoker to player");
+
+                    GameManager.Instance.StartMinigame1();
+
                     break;
 
 
