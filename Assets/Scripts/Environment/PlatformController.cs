@@ -27,7 +27,7 @@ public class PlatformController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Tags.Player))
+        if (collision.CompareTag(Constants.Player))
         {
             collision.transform.SetParent(this.transform);       
         }
@@ -35,7 +35,7 @@ public class PlatformController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag(Tags.Player))
+        if (collision.CompareTag(Constants.Player))
         {
             collision.transform.SetParent(null);
         }

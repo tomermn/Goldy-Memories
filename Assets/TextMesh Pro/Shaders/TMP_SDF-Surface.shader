@@ -67,7 +67,7 @@ Properties {
 
 SubShader {
 
-	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+	Constants { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
 
 	LOD 300
 	Cull [_CullMode]
@@ -104,7 +104,7 @@ SubShader {
 	Pass
 	{
 		Name "Caster"
-		Tags { "LightMode" = "ShadowCaster" }
+		Constants { "LightMode" = "ShadowCaster" }
 		Offset 1, 1
 
 		Fog {Mode Off}

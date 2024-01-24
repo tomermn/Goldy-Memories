@@ -24,7 +24,7 @@ Properties {
 
 SubShader{
 
-	Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+	Constants { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 
 	Stencil
 	{

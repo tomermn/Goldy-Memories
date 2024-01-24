@@ -90,7 +90,7 @@ public class MinigameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        Debug.Log("Is book null? " + (book == null));
+ 
         if (Instance != null) //is there already an instance available
         {
             DestroyImmediate(gameObject);
@@ -101,6 +101,10 @@ public class MinigameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(book.gameObject);
+            image1.gameObject.SetActive(false);
+            image2.gameObject.SetActive(false);
+            button1.gameObject.SetActive(false);
+            button2.gameObject.SetActive(false);
         }
     }
 
@@ -112,21 +116,21 @@ public class MinigameManager : MonoBehaviour
 
     public void StartMinigame()
     {
-        Debug.Log("3.Is book null? " + (book == null));
-        Debug.Log("enterd to startMinigame func in the minigame manager");
+        Debug.Log("got inside StartMinigame of minigameManager");
         book.DisplayBook();
-        
-
-        /*inventory = Inventory.Instance;
-        StartCoroutine(PlayMinigame());*/
+        inventory = Inventory.Instance;
+        //StartCoroutine(PlayMinigame());
     }
 
 
 
-    private IEnumerator PlayMinigame()
+    public void DisplayNextItems()
     {
-        yield return new WaitForSeconds(3f);
+        Debug.Log("got inside DisplayNextItems()");
         Pair currentPair = pairs[pairNumber];
+        Debug.Log(currentPair.Second.ToString());
+        Debug.Log(currentPair.First.ToString());
+        Debug.Log(currentPair);
         DisplayNextItems(currentPair.First, currentPair.Second);
     }
 
@@ -152,10 +156,15 @@ public class MinigameManager : MonoBehaviour
         {
             image1.sprite = itemSprite1;
             image2.sprite = itemSprite2;
+            image1.gameObject.SetActive(true);
+            image2.gameObject.SetActive(true);
             timeDisplay = Time.time;
+            button1.gameObject.SetActive(true);
+            button2.gameObject.SetActive(true);
             button1.interactable = true;
             button2.interactable = true;
         }
+        pairNumber++;
     }
 
 
@@ -220,7 +229,7 @@ public class MinigameManager : MonoBehaviour
         {
             SaveResultsToCSV();
         }
-        title.text = Tags.GameOverTitle;
+        title.text = Constants.GameOverTitle;
         image1.gameObject.SetActive(false);
         image2.gameObject.SetActive(false);
 
@@ -240,8 +249,8 @@ public class MinigameManager : MonoBehaviour
             FinishMemoryTest();
             return;
         }
-        Pair currentPair = pairs[pairNumber];
-        DisplayNextItems(currentPair.First, currentPair.Second);
+        //Pair currentPair = pairs[pairNumber];
+        //DisplayNextItems(currentPair.First, currentPair.Second);
     }
 }
 

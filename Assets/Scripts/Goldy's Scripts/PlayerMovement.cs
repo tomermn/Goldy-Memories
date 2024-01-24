@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private bool ladderFlag = false;             // Indicates if the player is on a ladder.
     private bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
     private bool isTouchingSpikes = false;
+    private bool inMiniGame = false;
 
     // Input values
     private float moveHorizontal;
@@ -92,16 +93,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleRegularMovement()
     {
-        if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+        if (!inMiniGame)
         {
-            rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
-        }
+            if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
+            {
+                rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+            }
 
-        if (moveVertical > 0.1f && !isJumping)
-        {
-            rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
-            isJumping = true;
+            if (moveVertical > 0.1f && !isJumping)
+            {
+                rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
+                isJumping = true;
+            }
         }
+        
     }
 
     private void HandleLadderClimbing()
@@ -148,29 +153,28 @@ public class PlayerMovement : MonoBehaviour
 
             switch (collision.gameObject.tag)
             {
-                case Tags.Platform:
+                case Constants.Platform:
                     isJumping = false;
                     break;
 
 
-                case Tags.Ladder:
+                case Constants.Ladder:
                     ladderFlag = true;
                     rigidbody.gravityScale = 0f;
                     break;
 
 
-                case Tags.CheckPoint:
+                case Constants.CheckPoint:
                     GameManager.Instance.SetCheckpoint(collision.transform);
                     break;
 
 
-                case Tags.Spikes:
+                case Constants.Spikes:
                     HandleSpikesCollision(collision);
                     break;
 
-                case "InvokeMinigame1":
-                    Debug.Log("we have a triger between invoker to player");
-
+                case Constants.InvokeMinigame1:
+                    inMiniGame = true;
                     GameManager.Instance.StartMinigame1();
 
                     break;
@@ -182,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (collision.tag == Tags.DeathBarrier)
+        if (collision.tag == Constants.DeathBarrier)
         {
             StartCoroutine(Respawn());
         }
@@ -216,17 +220,17 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == Tags.Platform)
+        if (collision.gameObject.tag == Constants.Platform)
         {
             isJumping = true; 
         }
-        else if (collision.gameObject.CompareTag(Tags.Ladder))
+        else if (collision.gameObject.CompareTag(Constants.Ladder))
         {
             ladderFlag = false;
             onLadder = false;
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
         }
-        else if (collision.gameObject.CompareTag("InvokeMinigame1"))
+        else if (collision.gameObject.CompareTag(Constants.InvokeMinigame1))
         {
             
         }

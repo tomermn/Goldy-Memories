@@ -54,7 +54,7 @@ Properties {
 }
 
 SubShader {
-	Tags
+	Constants
   {
 		"Queue"="Overlay"
 		"IgnoreProjector"="True"

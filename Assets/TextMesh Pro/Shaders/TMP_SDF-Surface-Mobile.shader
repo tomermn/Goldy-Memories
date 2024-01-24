@@ -49,7 +49,7 @@ Properties {
 
 SubShader {
 
-	Tags {
+	Constants {
 		"Queue"="Transparent"
 		"IgnoreProjector"="True"
 		"RenderType"="Transparent"
@@ -87,7 +87,7 @@ SubShader {
 	Pass
 	{
 		Name "Caster"
-		Tags { "LightMode" = "ShadowCaster" }
+		Constants { "LightMode" = "ShadowCaster" }
 		Offset 1, 1
 
 		Fog {Mode Off}

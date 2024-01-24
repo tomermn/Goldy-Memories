@@ -47,11 +47,18 @@ public class GameManager : MonoBehaviour
 
     public void StartMinigame1()
     {
-
-        Debug.Log("Enter to startMinigame1 on game Manager");
-        //Time.timeScale = 0f; Debug.Log("just pause the game");
         MinigameManager.Instance.StartMinigame();
 
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
     }
 
     private void TogglePause()

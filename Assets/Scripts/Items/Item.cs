@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(Tags.Player) && !isCollected)
+        if (other.CompareTag(Constants.Player) && !isCollected)
         {
             isCollected = true;
             Collect(other.gameObject);
@@ -50,7 +50,7 @@ public class Item : MonoBehaviour
     /// </summary>
     private void SpawnRandomally()
     {
-        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag(Tags.ItemSpawnPoint);
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag(Constants.ItemSpawnPoint);
 
         List<Transform> availableSpawnPoints = new List<Transform>();
 

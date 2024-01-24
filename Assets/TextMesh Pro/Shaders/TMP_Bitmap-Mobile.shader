@@ -24,7 +24,7 @@ Properties {
 
 SubShader {
 
-	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+	Constants { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
 
 	Stencil
 	{
@@ -126,7 +126,7 @@ SubShader {
 }
 
 SubShader {
-	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+	Constants { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
 	Lighting Off Cull Off ZTest Always ZWrite Off Fog { Mode Off }
 	Blend SrcAlpha OneMinusSrcAlpha
 	BindChannels {
