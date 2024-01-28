@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Book : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Book : MonoBehaviour
     bool rotate = false;
     [SerializeField] GameObject prevButton;
     [SerializeField] GameObject nextButton;
+    [SerializeField] UIDocument title;
+    [SerializeField] UIDocument instructions;
     
 
 
@@ -26,6 +29,8 @@ public class Book : MonoBehaviour
     {
         Debug.Log("Display next Items on book");
         Instance.RotateForward();
+        title.gameObject.SetActive(false);
+        instructions.gameObject.SetActive(false);
         MinigameManager.Instance.DisplayNextItems();
 
     }

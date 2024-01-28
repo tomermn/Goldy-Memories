@@ -126,11 +126,7 @@ public class MinigameManager : MonoBehaviour
 
     public void DisplayNextItems()
     {
-        Debug.Log("got inside DisplayNextItems()");
         Pair currentPair = pairs[pairNumber];
-        Debug.Log(currentPair.Second.ToString());
-        Debug.Log(currentPair.First.ToString());
-        Debug.Log(currentPair);
         DisplayNextItems(currentPair.First, currentPair.Second);
     }
 
@@ -240,6 +236,7 @@ public class MinigameManager : MonoBehaviour
 
     private void ContinueToNextPair()
     {
+        book.RotateForward();
         pairNumber++;
         if (pairNumber == pairs.Length)
         {
@@ -249,8 +246,8 @@ public class MinigameManager : MonoBehaviour
             FinishMemoryTest();
             return;
         }
-        //Pair currentPair = pairs[pairNumber];
-        //DisplayNextItems(currentPair.First, currentPair.Second);
+        Pair currentPair = pairs[pairNumber];
+        DisplayNextItems(currentPair.First, currentPair.Second);
     }
 }
 
