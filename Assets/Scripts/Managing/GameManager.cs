@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void StartMinigame1()
     {
+        Debug.Log ("game Manager call for StrartMinigame1");
         MinigameManager.Instance.StartMinigame();
 
     }
@@ -57,8 +58,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void ResumeGame()
-    {
-        Time.timeScale = 1f;
+    {   
+        PlayerMovement.inMiniGame = false;
+        GameObject invoker =  GameObject.FindWithTag(Constants.InvokeMinigame1);
+        Destroy(invoker);
     }
 
     private void TogglePause()

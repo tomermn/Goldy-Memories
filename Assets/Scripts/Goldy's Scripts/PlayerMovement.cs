@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private bool ladderFlag = false;             // Indicates if the player is on a ladder.
     private bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
     private bool isTouchingSpikes = false;
-    private bool inMiniGame = false;
+    public static bool inMiniGame = false;
 
     // Input values
     private float moveHorizontal;
@@ -176,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
                 case Constants.InvokeMinigame1:
                     inMiniGame = true;
                     GameManager.Instance.StartMinigame1();
+                    
 
                     break;
 
