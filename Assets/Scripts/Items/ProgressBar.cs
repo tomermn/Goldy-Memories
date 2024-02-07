@@ -17,6 +17,7 @@ public class ProgressBar : MonoBehaviour
 
     public void IncProgress(float value)
     {
+        Debug.Log(value);
         slider.value = value;
     }
 }

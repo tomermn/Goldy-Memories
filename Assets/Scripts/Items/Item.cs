@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Item : MonoBehaviour
 {
-    private static List<Transform> usedSpawnPoints = new List<Transform>(); // List of spawn points already used for item placement
+    private readonly static List<Transform> usedSpawnPoints = new List<Transform>(); // List of spawn points already used for item placement
     private bool isCollected = false;                   // Flag indicating whether the item has been collected
 
 
@@ -23,8 +23,9 @@ public class Item : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(Constants.Player) && !isCollected)
+        if (other.CompareTag(Constants.PLAYER_TAG) && !isCollected)
         {
+            
             isCollected = true;
             Collect(other.gameObject);
 
@@ -50,7 +51,7 @@ public class Item : MonoBehaviour
     /// </summary>
     private void SpawnRandomally()
     {
-        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag(Constants.ItemSpawnPoint);
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag(Constants.ITEM_SPAWN_POINT_TAG);
 
         List<Transform> availableSpawnPoints = new List<Transform>();
 

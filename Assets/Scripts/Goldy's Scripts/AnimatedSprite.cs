@@ -6,15 +6,15 @@ using UnityEngine;
 /// </summary>
 public class AnimatedSprite : MonoBehaviour
 {
-    [SerializeField]  
-    private Sprite[] sprites;        // Array of sprites for animation.
-    
-    [SerializeField]
-    protected float framerate;
-    
+    [SerializeField] private Sprite[] sprites;        // Array of sprites for animation.
+    [SerializeField] protected float framerate;
     protected SpriteRenderer spriteRenderer;
     protected int frame;
 
+    public Sprite getCurrentSprite()
+    {
+        return sprites[frame];
+    }
 
     virtual protected void Awake()
     {
@@ -47,8 +47,5 @@ public class AnimatedSprite : MonoBehaviour
         spriteRenderer.sprite = sprites[frame];
     }
 
-    public Sprite getCurrentSprite()
-    {
-        return sprites[frame];
-    }
+    
 }

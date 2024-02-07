@@ -9,17 +9,7 @@ using UnityEngine.SceneManagement; // required for loading a scene
 public class GameManager : MonoBehaviour  
 {
     public static GameManager Instance { get; private set; } // Gets the singleton instance of the GameManager.
-
-
-    public int level { get; private set; }
-
-    public int phase { get; private set; }
-
-    public int lives { get; private set; }
-
-    [SerializeField]
-    private int n_items_to_collect;
-
+    [SerializeField] private int numOfItemsToCollect;
     private Vector2 respawnPoint;
 
 
@@ -28,7 +18,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void NewGame()
     {
-        lives = 1;
         LoadLevel(1, 1);
     }
 
@@ -47,9 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void StartMinigame1()
     {
-        Debug.Log ("game Manager call for StrartMinigame1");
         MinigameManager.Instance.StartMinigame();
-
     }
 
     public void PauseGame()
@@ -60,14 +47,10 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {   
         PlayerMovement.inMiniGame = false;
-        GameObject invoker =  GameObject.FindWithTag(Constants.InvokeMinigame1);
+        GameObject invoker =  GameObject.FindWithTag(Constants.INVOKER_MINIGAME_1);
         Destroy(invoker);
     }
 
-    private void TogglePause()
-    {
-
-    }
 
     /// <summary>
     /// Sets the respawn point to the specified checkpoint position.
@@ -107,18 +90,6 @@ public class GameManager : MonoBehaviour
     private void NextLevel()
     {
         SceneManager.LoadScene("MinigameOrderTest");
-        // OPTIONAL: multilevel game
-        //if (phase == 2)
-        //{
-        //    phase = 1;
-        //    level++;
-        //}
-        //else
-        //{
-        //    phase++;
-        //}
-        //LoadLevel(level, phase);
-
     }
 
     /// <summary>
@@ -137,9 +108,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void LoadLevel(int level, int phase)
     {
-        this.level = level;
-        this.phase = phase;
-       
         SceneManager.LoadScene($"{level}-{phase}"); 
     }
 
@@ -151,19 +119,6 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(ResetLevel), delay);
     }
 
-
-    private void ResetLevel()
-    {
-        lives--;
-        if (lives > 0)
-        {
-            LoadLevel(level, phase);
-        }
-        else
-        {
-            GameOver();
-        }
-    }
 
     /// <summary>
     /// Handles the game over scenario (Optional for future use).

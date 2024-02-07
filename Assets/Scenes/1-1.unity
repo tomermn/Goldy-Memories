@@ -4182,7 +4182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f6c1f8197b0d843883aafa83a4ccdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 959532430}
+  itemImage: {fileID: 0}
 --- !u!1 &722278671
 GameObject:
   m_ObjectHideFlags: 0
@@ -15563,8 +15563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b03935dace616741a78c648059b101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  n_collected: 0
-  n_to_collect: 5
+  numOfCollectedItems: 0
+  numOfItemsToCollect: 0
   progressBar: {fileID: 953722082}
   itemPanel: {fileID: 720330463}
   itemDB: {fileID: 11400000, guid: 1e90117eeed3d17449215752dad6147b, type: 2}
@@ -24458,7 +24458,7 @@ GameObject:
   - component: {fileID: 1944084089}
   m_Layer: 0
   m_Name: InvokeMinigame1
-  m_TagString: InvokeMinigame1
+  m_TagString: Invoker1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

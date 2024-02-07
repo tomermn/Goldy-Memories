@@ -4,19 +4,19 @@ using UnityEngine;
 
 public static class Constants
 {
-    // Constants for game objects
-    public const string Player = "Player";
-    public const string Platform = "Platform";
-    public const string Ladder = "Ladder";
-    public const string CheckPoint = "CheckPoint";
-    public const string Spikes = "Spikes";
-    public const string DeathBarrier = "DeathBarrier";
-    public const string ItemSpawnPoint = "ItemSpawnPoint";
-    public const string Book1 = "book1";
-    public const string BookForMinigame1 = "AC";
-    public const string InvokeMinigame1 = "InvokeMinigame1";
+    // Tags for game objects
+    public const string PLAYER_TAG = "Player";
+    public const string PLATFORM_TAG = "Platform";
+    public const string LADDER_TAG = "Ladder";
+    public const string CHECK_POINT_TAG = "CheckPoint";
+    public const string SPIKES_TAG = "Spikes";
+    public const string DEATH_BARRIER_TAG = "DeathBarrier";
+    public const string ITEM_SPAWN_POINT_TAG = "ItemSpawnPoint";
+    public const string INVOKER_MINIGAME_1 = "Invoker1";
 
-    // Consts for Minigame
+
+
+    // Constants for Minigame
     public const string GameOverTitle = "Game Over";
 
 }

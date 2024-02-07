@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 /// <summary>
@@ -10,21 +9,13 @@ public class PlayerSpriteRenderer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PlayerMovement playerMovement;
 
-    [SerializeField]
-    private Sprite idle;
-
-    [SerializeField]
-    private Sprite jump;
-
-    [SerializeField]
-    private Sprite climbingState;
-
+    // Sprites fields
+    [SerializeField] private Sprite idle;
+    [SerializeField] private Sprite jump;
+    [SerializeField] private Sprite climbingState;
+    [SerializeField] private AnimatedSprite run;
+    [SerializeField] private AnimatedSprite climb;
     //public Sprite onLadder; an idle state on ladder - option
-    [SerializeField]
-    private AnimatedSprite run;
-
-    [SerializeField]
-    private AnimatedSprite climb;
 
 
     /// <summary>

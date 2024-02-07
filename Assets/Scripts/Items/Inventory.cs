@@ -14,19 +14,11 @@ public class Inventory : MonoBehaviour
 
     private List<(string, DateTime)> collectedItems = new List<(string, DateTime)>();
 
-    [SerializeField]
-    private int n_collected;             // Number of items collected.
-    [SerializeField]
-    private int n_to_collect;            // Total number of items to collect.
-
-    [SerializeField]
-    private ProgressBar progressBar;
-
-    [SerializeField]
-    private ItemPanel itemPanel;
-
-    [SerializeField]
-    private ItemDatabase itemDB;
+    [SerializeField] private int numOfCollectedItems;               // Number of items collected.
+    [SerializeField] private int numOfItemsToCollect;      // Total number of items to collect.
+    [SerializeField] private ProgressBar progressBar;
+    [SerializeField] private ItemPanel itemPanel;
+    [SerializeField] private ItemDatabase itemDB;
 
 
 
@@ -35,12 +27,14 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void AddToInvetory(Item item)
     {
+        
         collectedItems.Add((item.name, DateTime.Now));
-        n_collected = collectedItems.Count;
-        if (n_to_collect != 0)
+        numOfCollectedItems = collectedItems.Count;
+        if (numOfItemsToCollect != 0)
         {
-            float progressRatio = (float)n_collected / n_to_collect;
+            float progressRatio = (float)numOfCollectedItems / numOfItemsToCollect;
             progressBar.IncProgress(progressRatio);
+            
             StartCoroutine(itemPanel.DisplayPanel(itemDB.GetItemSprite(item.name)));
         }
 
@@ -98,7 +92,7 @@ public class Inventory : MonoBehaviour
 
         // Deserialize the JSON string back into a List<string>
         collectedItems = JsonUtility.FromJson<List<(string, DateTime)>>(inventoryJson);
-        n_collected = collectedItems.Count;
+        numOfCollectedItems = collectedItems.Count;
     }
 
     /// <summary>

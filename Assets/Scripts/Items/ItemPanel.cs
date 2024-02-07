@@ -8,8 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class ItemPanel : MonoBehaviour
 {
-    [SerializeField]
-    private Image itemImage;
+    [SerializeField] private Image itemImage;
 
     /// <summary>
     /// Displays the collected item's sprite on the item panel and activates it for a short duration.

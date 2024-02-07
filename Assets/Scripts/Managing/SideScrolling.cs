@@ -9,7 +9,7 @@ public class SiideScrolling : MonoBehaviour
     private Transform player;
     private void Awake()
     {
-        player = GameObject.FindWithTag(Constants.Player).transform;
+        player = GameObject.FindWithTag(Constants.PLAYER_TAG).transform;
     }
 
     /// <summary>

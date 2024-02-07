@@ -8,20 +8,14 @@ using UnityEngine;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-
     private new Camera camera;
-    private Vector2 velocity;                   //Player'a current velocity
+    private Vector2 velocity;                   // Player's current velocity
     private new Rigidbody2D rigidbody;
 
     // Movement parameters
-    [SerializeField]
-    private float MoveSpeed = 1f;                //Player's movement speed parameter
-
-    [SerializeField]
-    private float LadderClimbSpeed = 5f;         //Player's climbing speed parameter
-
-    [SerializeField]
-    private float JumpForce = 60f;               //Player's jump force parameter
+    [SerializeField] private float MoveSpeed = 1f;                // Player's movement speed parameter
+    [SerializeField] private float LadderClimbSpeed = 5f;         // Player's climbing speed parameter
+    [SerializeField] private float JumpForce = 60f;               // Player's jump force parameter
 
     // Flags for player state
     private bool isJumping = false;
@@ -37,11 +31,8 @@ public class PlayerMovement : MonoBehaviour
     // Properties for additional state's information
     public bool Running => Mathf.Abs(moveHorizontal) > 0f;
     public bool IsMovingVertical => Mathf.Abs(moveVertical) > 0f;
-
     public bool IsJumping => isJumping;
-
     public bool LadderFlag => ladderFlag;
-
     public bool OnLadder => onLadder;
     public bool IsTouchingSpikes => isTouchingSpikes;
 
@@ -61,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         moveHorizontal = Input.GetAxisRaw("Horizontal"); //left = a = -1, right = 'd' = 1, 0 = standing
         moveVertical = Input.GetAxisRaw("Vertical"); 
-
     }
 
 
@@ -120,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleRotation()
     {
-        if (velocity.x > 0)
+        if (velocity.x > 0f)
         {
             transform.eulerAngles = Vector3.zero; // No rotation for right movement
         }
@@ -150,44 +140,35 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isTouchingSpikes)
         {
-
             switch (collision.gameObject.tag)
             {
-                case Constants.Platform:
+                case Constants.PLATFORM_TAG:
                     isJumping = false;
                     break;
 
-
-                case Constants.Ladder:
+                case Constants.LADDER_TAG:
                     ladderFlag = true;
                     rigidbody.gravityScale = 0f;
                     break;
 
-
-                case Constants.CheckPoint:
+                case Constants.CHECK_POINT_TAG:
                     GameManager.Instance.SetCheckpoint(collision.transform);
                     break;
 
-
-                case Constants.Spikes:
+                case Constants.SPIKES_TAG:
                     HandleSpikesCollision(collision);
                     break;
 
-                case Constants.InvokeMinigame1:
+                case Constants.INVOKER_MINIGAME_1:
                     inMiniGame = true;
                     GameManager.Instance.StartMinigame1();
-                    
-
                     break;
 
-
-
                 default: break;
-
             }
         }
 
-        if (collision.tag == Constants.DeathBarrier)
+        if (collision.tag == Constants.DEATH_BARRIER_TAG)
         {
             StartCoroutine(Respawn());
         }
@@ -206,7 +187,6 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(FallThroughSpikes(collision));
     }
 
-
     private IEnumerator FallThroughSpikes(Collider2D collision)
     {
         yield return new WaitForSeconds(2f);
@@ -221,19 +201,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == Constants.Platform)
+        if (collision.gameObject.tag == Constants.PLATFORM_TAG)
         {
             isJumping = true; 
         }
-        else if (collision.gameObject.CompareTag(Constants.Ladder))
+        else if (collision.gameObject.CompareTag(Constants.LADDER_TAG))
         {
             ladderFlag = false;
             onLadder = false;
             rigidbody.gravityScale = 8f; // Re-enable gravity when leaving the ladder      
-        }
-        else if (collision.gameObject.CompareTag(Constants.InvokeMinigame1))
-        {
-            
         }
     }
 }

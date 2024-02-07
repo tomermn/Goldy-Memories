@@ -11,14 +11,18 @@ public class PlatformController : MonoBehaviour
     private void Start()
     {
         targetPos = posB.position;
-        
     }
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, posA.position) < .1f) targetPos = posB.position;
-        if (Vector2.Distance(transform.position,posB.position) < .1f) targetPos = posA.position;
-
+        if (Vector2.Distance(transform.position, posA.position) < .1f)
+        {
+            targetPos = posB.position;
+        }
+        if (Vector2.Distance(transform.position, posB.position) < .1f)
+        {
+            targetPos = posA.position;
+        }
         transform.position = Vector2.MoveTowards(transform.position, targetPos, platformSpeed * Time.deltaTime);
     }
     
@@ -27,7 +31,7 @@ public class PlatformController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Constants.Player))
+        if (collision.CompareTag(Constants.PLAYER_TAG))
         {
             collision.transform.SetParent(this.transform);       
         }
@@ -35,7 +39,7 @@ public class PlatformController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag(Constants.Player))
+        if (collision.CompareTag(Constants.PLAYER_TAG))
         {
             collision.transform.SetParent(null);
         }
