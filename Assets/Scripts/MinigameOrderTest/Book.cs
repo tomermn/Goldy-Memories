@@ -52,7 +52,7 @@ public class Book : MonoBehaviour
     /// </summary>
     public void RotateForward()
     {
-        if (rotate == true) { return; }
+        if (rotate) { return; }
         index++;
         float angle = 180; //in order to rotate the page forward, you need to set the rotation by 180 degrees around the y axis
         ForwardButtonActions();
@@ -65,7 +65,7 @@ public class Book : MonoBehaviour
     /// </summary>
     public void RotateBack()
     {
-        if (rotate == true) { return; }
+        if (rotate) { return; }
         float angle = 0; //in order to rotate the page back, you need to set the rotation to 0 degrees around the y axis
         pages[index].SetAsLastSibling();
         BackButtonActions();

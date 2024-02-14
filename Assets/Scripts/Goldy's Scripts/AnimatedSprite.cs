@@ -8,17 +8,17 @@ public class AnimatedSprite : MonoBehaviour
 {
     [SerializeField] private Sprite[] sprites;        // Array of sprites for animation.
     [SerializeField] protected float framerate;
-    protected SpriteRenderer spriteRenderer;
-    protected int frame;
+    protected SpriteRenderer SpriteRenderer;
+    protected int Frame;
 
-    public Sprite getCurrentSprite()
+    public Sprite GetCurrentSprite()
     {
-        return sprites[frame];
+        return sprites[Frame];
     }
 
-    virtual protected void Awake()
+    protected virtual void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -37,14 +37,14 @@ public class AnimatedSprite : MonoBehaviour
     /// </summary>
     protected void Animate()
     {
-        frame++;
+        Frame++;
 
-        if (frame >= sprites.Length)
+        if (Frame >= sprites.Length)
         {
-            frame = 0;
+            Frame = 0;
         }
 
-        spriteRenderer.sprite = sprites[frame];
+        SpriteRenderer.sprite = sprites[Frame];
     }
 
     

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 /// <summary>
@@ -9,7 +8,7 @@ public class NextLevel : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Constants.PLAYER_TAG) == true)
+        if (collision.CompareTag(Constants.PlayerTag))
         {
             GameManager.Instance.NextLevel(0);
         }

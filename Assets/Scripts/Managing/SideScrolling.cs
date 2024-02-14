@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 
 /// <summary>
@@ -9,7 +9,7 @@ public class SiideScrolling : MonoBehaviour
     private Transform player;
     private void Awake()
     {
-        player = GameObject.FindWithTag(Constants.PLAYER_TAG).transform;
+        player = GameObject.FindWithTag(Constants.PlayerTag).transform;
     }
 
     /// <summary>

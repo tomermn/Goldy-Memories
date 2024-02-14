@@ -142,24 +142,24 @@ public class PlayerMovement : MonoBehaviour
         {
             switch (collision.gameObject.tag)
             {
-                case Constants.PLATFORM_TAG:
+                case Constants.PlatformTag:
                     isJumping = false;
                     break;
 
-                case Constants.LADDER_TAG:
+                case Constants.LadderTag:
                     ladderFlag = true;
                     rigidbody.gravityScale = 0f;
                     break;
 
-                case Constants.CHECK_POINT_TAG:
+                case Constants.CheckPointTag:
                     GameManager.Instance.SetCheckpoint(collision.transform);
                     break;
 
-                case Constants.SPIKES_TAG:
+                case Constants.SpikesTag:
                     HandleSpikesCollision(collision);
                     break;
 
-                case Constants.INVOKER_MINIGAME_1:
+                case Constants.InvokerMinigame1:
                     inMiniGame = true;
                     GameManager.Instance.StartMinigame1();
                     break;
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (collision.tag == Constants.DEATH_BARRIER_TAG)
+        if (collision.tag == Constants.DeathBarrierTag)
         {
             StartCoroutine(Respawn());
         }
@@ -201,11 +201,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == Constants.PLATFORM_TAG)
+        if (collision.gameObject.tag == Constants.PlatformTag)
         {
             isJumping = true; 
         }
-        else if (collision.gameObject.CompareTag(Constants.LADDER_TAG))
+        else if (collision.gameObject.CompareTag(Constants.LadderTag))
         {
             ladderFlag = false;
             onLadder = false;

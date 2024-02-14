@@ -1,5 +1,5 @@
 
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.SceneManagement; // required for loading a scene
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {   
         PlayerMovement.inMiniGame = false;
-        GameObject invoker =  GameObject.FindWithTag(Constants.INVOKER_MINIGAME_1);
+        GameObject invoker =  GameObject.FindWithTag(Constants.InvokerMinigame1);
         Destroy(invoker);
     }
 
@@ -64,11 +64,7 @@ public class GameManager : MonoBehaviour
     {
         NewGame();
     }
-
-
-
-
-
+    
     /// <summary>
     /// Initializes the GameManager singleton instance and sets the initial respawn point.
     /// </summary>
@@ -110,23 +106,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene($"{level}-{phase}"); 
     }
-
-    /// <summary>
-    /// Resets the current level after a specified delay (Optional for future use).
-    /// </summary>
-    private void ResetLevel(float delay)
-    {
-        Invoke(nameof(ResetLevel), delay);
-    }
-
-
-    /// <summary>
-    /// Handles the game over scenario (Optional for future use).
-    /// </summary>
-    private void GameOver()
-    {
-        NewGame();
-    }
+    
 
     
 

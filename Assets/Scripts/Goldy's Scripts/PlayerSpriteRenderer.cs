@@ -57,7 +57,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
         {
             run.enabled = false;
             climb.enabled = true;
-            climbingState = climb.getCurrentSprite();
+            climbingState = climb.GetCurrentSprite();
         }
 
         // Set idle Climbe sprite
