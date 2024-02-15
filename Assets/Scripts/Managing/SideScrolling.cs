@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class SiideScrolling : MonoBehaviour
 {
+    [SerializeField] private bool CanMoveDown;
     private Transform player;
     private void Awake()
     {
@@ -38,12 +39,15 @@ public class SiideScrolling : MonoBehaviour
 
 
         // Follow the player vertically if the player's y position is greater than or equal to 0.
-        if (player.position.y >= 0)
+        if (CanMoveDown)
+        {
+            cameraPosition.y = player.position.y;
+        }
+        else if (player.position.y >= 0)
         {
             cameraPosition.y = player.position.y;
             
         }
-
         transform.position = cameraPosition;
 
     }

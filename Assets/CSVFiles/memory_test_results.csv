@@ -1,6 +1,6 @@
 Item1Name,Item2Name,Item1Index,Item2Index,IsPlayerCorrect,TimePassed
-Yellow Bottle,Watch,0,3,False,123.9101
-Sandwitch,Scissors,1,4,False,124.7481
-Watch,Apple,3,2,True,125.8375
-Apple,Sandwitch,2,1,True,126.8458
-Scissors,Watch,4,3,True,127.7806
+Yellow Bottle,Watch,0,3,True,68.03942
+Sandwitch,Scissors,1,4,False,69.96712
+Watch,Apple,3,2,False,71.71209
+Apple,Sandwitch,2,1,True,73.62476
+Scissors,Watch,4,3,False,75.7317
