@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    public const string PlayerTag = "Player";
+    
     private new Camera camera;
     private Vector2 velocity;                   // Player's current velocity
     private new Rigidbody2D rigidbody;
@@ -140,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         {
             switch (collision.gameObject.tag)
             {
-                case Constants.PlatformTag:
+                case PlatformController.PlatformTag:
                     isJumping = false;
                     break;
 
@@ -199,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag(Constants.PlatformTag))
+        if (collision.gameObject.CompareTag(PlatformController.PlatformTag))
         {
             isJumping = true; 
         }

@@ -8,7 +8,7 @@ public class NextLevel : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Constants.PlayerTag))
+        if (collision.CompareTag(PlayerMovement.PlayerTag))
         {
             GameManager.Instance.NextLevel(0);
         }

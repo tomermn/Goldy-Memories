@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
+    public const string PlatformTag = "Platform";
     [SerializeField] private Transform posA, posB;
 
     [SerializeField] private int platformSpeed;
@@ -31,7 +32,7 @@ public class PlatformController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Constants.PlayerTag))
+        if (collision.CompareTag(PlayerMovement.PlayerTag))
         {
             collision.transform.SetParent(this.transform);       
         }
@@ -39,7 +40,7 @@ public class PlatformController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag(Constants.PlayerTag))
+        if (collision.CompareTag(PlayerMovement.PlayerTag))
         {
             collision.transform.SetParent(null);
         }

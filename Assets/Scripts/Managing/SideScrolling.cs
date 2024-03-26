@@ -10,7 +10,7 @@ public class SideScrolling : MonoBehaviour
     private Transform player;
     private void Awake()
     {
-        player = GameObject.FindWithTag(Constants.PlayerTag).transform;
+        player = GameObject.FindWithTag(PlayerMovement.PlayerTag).transform;
     }
 
     /// <summary>

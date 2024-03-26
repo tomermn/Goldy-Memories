@@ -1,41 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Items;
 using UnityEngine;
 
 
 /// <summary>
 /// Represents a collectible item in the game that can be picked up by the player.
 /// </summary>
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, ICollectable
 {
     private static readonly List<Transform> UsedSpawnPoints = new List<Transform>(); // List of spawn points already used for item placement
     private bool isCollected = false;                   // Flag indicating whether the item has been collected
 
 
-    private void Start()
-    {
-        SpawnRandomally();
-    }
 
-    /// <summary>
-    /// Handles the item being triggered by the player.
-    /// </summary>
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag(Constants.PlayerTag) && !isCollected)
-        {
-            
-            isCollected = true;
-            Collect();
-
-        }
-    }
-
+    
     /// <summary>
     /// Collects the item, adds it to the player's inventory, and destroys the item object.
     /// </summary>
-    private void Collect()
+    public void OnCollect()
     {
         Inventory inventory = FindAnyObjectByType<Inventory>();
         if (inventory != null )
@@ -43,13 +26,31 @@ public class Item : MonoBehaviour
             inventory.AddToInvetory(this);
             Destroy(gameObject);   
         }
-        
     }
 
     /// <summary>
+    /// Handles the item being triggered by the player.
+    /// </summary>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(PlayerMovement.PlayerTag) && !isCollected)
+        {
+            
+            isCollected = true;
+            OnCollect();
+
+        }
+    }
+
+    private void Start()
+    {
+        SpawnRandomly();
+    }
+    
+    /// <summary>
     /// Spawns the item at a random available spawn point.
     /// </summary>
-    private void SpawnRandomally()
+    private void SpawnRandomly()
     {
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag(Constants.ItemSpawnPointTag);
 

@@ -46,6 +46,4 @@ public class AnimatedSprite : MonoBehaviour
 
         SpriteRenderer.sprite = sprites[Frame];
     }
-
-    
 }

@@ -7,14 +7,14 @@ using UnityEngine;
 public class ClimbingSprites : AnimatedSprite
 {
     private PlayerMovement playerMovement;
-
+    private const float ClimbingFrameRate = (1f / 9f);
 
     protected override void Awake()
     {
-        framerate = (1f / 9f);
+        framerate = ClimbingFrameRate;
         base.Awake();
         playerMovement = GetComponent<PlayerMovement>();
-        this.enabled = false;
+        enabled = false;
     }
 
     /// <summary>
@@ -22,6 +22,6 @@ public class ClimbingSprites : AnimatedSprite
     /// </summary>
     private void Update()
     {
-        this.enabled = playerMovement.OnLadder;
+        enabled = playerMovement.OnLadder;
     }
 }

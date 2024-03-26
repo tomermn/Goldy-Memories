@@ -14,8 +14,12 @@ public class RainEvent : MonoBehaviour
     [SerializeField] private ParticleSystem rainParticleSystem;
     [SerializeField] private GameObject lightning;
 
-    private float flashDuration = 1f;
-    private float fadeDuration = 1.5f;
+    private const float FlashDuration = 1f;
+    private const float FadeDuration = 1.5f;
+    private const float FlashStartAlpha = 0f;
+    private const float FlashEndAlpha = 1f;
+    private const float DarkScreenDuration = 1f;
+    private const float DarknessScreenTarget = 2 / 3f;
     private bool hasTriggeredRain = false;
 
     private void Start()
@@ -29,7 +33,7 @@ public class RainEvent : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!hasTriggeredRain && collision.CompareTag(Constants.PlayerTag)) // Adjust the tag as needed
+        if (!hasTriggeredRain && collision.CompareTag(PlayerMovement.PlayerTag)) // Adjust the tag as needed
         {
             StartCoroutine(DarkenScreen());
             StartCoroutine(FlashScreen());
@@ -57,19 +61,17 @@ public class RainEvent : MonoBehaviour
         lightning.SetActive(true);
 
         // Parameters for adjusting the lightning opacity
-        float startAlpha = 1f;
-        float endAlpha = 0f;
-        float elapsedTime = 0f;
+        var elapsedTime = 0f;
 
-        while (elapsedTime < fadeDuration)
+        while (elapsedTime < FadeDuration)
         {
-            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            float alpha = Mathf.Lerp(FlashStartAlpha, FlashEndAlpha, elapsedTime / FadeDuration);
             SetLightningAlpha(alpha, lightning);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        yield return new WaitForSeconds(flashDuration);
+        yield return new WaitForSeconds(FlashDuration);
         lightning.SetActive(false);
     }
 
@@ -88,14 +90,11 @@ public class RainEvent : MonoBehaviour
     /// </summary>
     private IEnumerator DarkenScreen()
     {
-        float duration = 1f; // Adjust the duration as needed
-        float targetAlpha = 0.666f; // Adjust the darkness level
-
-        float startTime = Time.time;
-        while (Time.time < startTime + duration)
+        var startTime = Time.time;
+        while (Time.time < startTime + DarkScreenDuration)
         {
-            float lerpValue = (Time.time - startTime) / duration;
-            screenOverlay.color = new Color(0, 0, 0, Mathf.Lerp(0, targetAlpha, lerpValue));
+            var lerpValue = (Time.time - startTime) / DarkScreenDuration;
+            screenOverlay.color = new Color(0, 0, 0, Mathf.Lerp(0, DarknessScreenTarget, lerpValue));
             yield return null;
         }
     }
