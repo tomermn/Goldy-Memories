@@ -60,7 +60,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
             climbingState = climb.GetCurrentSprite();
         }
 
-        // Set idle Climbe sprite
+        // Set idle Climb sprite
         else if (playerMovement.OnLadder) 
         {
             spriteRenderer.sprite = climbingState;

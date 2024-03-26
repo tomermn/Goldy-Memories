@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Controls the side-scrolling behavior of the camera to follow the player horizontally and vertically.
 /// </summary>
-public class SiideScrolling : MonoBehaviour
+public class SideScrolling : MonoBehaviour
 {
     [SerializeField] private bool CanMoveDown;
     private Transform player;
@@ -46,7 +46,7 @@ public class SiideScrolling : MonoBehaviour
         else if (player.position.y >= 0)
         {
             cameraPosition.y = player.position.y;
-            
+
         }
         transform.position = cameraPosition;
 

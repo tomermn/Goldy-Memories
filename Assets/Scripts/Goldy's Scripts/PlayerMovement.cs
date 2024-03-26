@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 /// <summary>
@@ -13,16 +13,16 @@ public class PlayerMovement : MonoBehaviour
     private new Rigidbody2D rigidbody;
 
     // Movement parameters
-    [SerializeField] private float MoveSpeed = 1f;                // Player's movement speed parameter
-    [SerializeField] private float LadderClimbSpeed = 5f;         // Player's climbing speed parameter
-    [SerializeField] private float JumpForce = 60f;               // Player's jump force parameter
+    [FormerlySerializedAs("MoveSpeed")] [SerializeField] private float moveSpeed = 1f;                // Player's movement speed parameter
+    [FormerlySerializedAs("LadderClimbSpeed")] [SerializeField] private float ladderClimbSpeed = 5f;         // Player's climbing speed parameter
+    [FormerlySerializedAs("JumpForce")] [SerializeField] private float jumpForce = 60f;               // Player's jump force parameter
 
     // Flags for player state
     private bool isJumping = false;
     private bool ladderFlag = false;             // Indicates if the player is on a ladder.
     private bool onLadder = false;               // Indicates if the player is actively climbing a ladder.
     private bool isTouchingSpikes = false;
-    public static bool inMiniGame = false;
+    public static bool InMiniGame = false;
 
     // Input values
     private float moveHorizontal;
@@ -57,13 +57,11 @@ public class PlayerMovement : MonoBehaviour
 
     /// <summary>
     /// Handles physics-based movement, jumping, ladder climbing, and rotation.
-    /// </summary
+    /// </summary>
     private void FixedUpdate()
     {
         if (!isTouchingSpikes) {
             Vector2 position = rigidbody.position;
-            position += velocity * Time.fixedDeltaTime;
-
             if (!ladderFlag)
             {
                 HandleRegularMovement();
@@ -75,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 HandleLadderClimbing();
             }
 
-            velocity.x = Mathf.MoveTowards(velocity.x, moveHorizontal * MoveSpeed, MoveSpeed);
+            velocity.x = Mathf.MoveTowards(velocity.x, moveHorizontal * moveSpeed, moveSpeed);
             HandleRotation();
         }
         
@@ -83,16 +81,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleRegularMovement()
     {
-        if (!inMiniGame)
+        if (!InMiniGame)
         {
             if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
             {
-                rigidbody.AddForce(new Vector2(moveHorizontal * MoveSpeed, 0f), ForceMode2D.Impulse);
+                rigidbody.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
             }
 
             if (moveVertical > 0.1f && !isJumping)
             {
-                rigidbody.AddForce(new Vector2(0f, moveVertical * JumpForce), ForceMode2D.Impulse);
+                rigidbody.AddForce(new Vector2(0f, moveVertical * jumpForce), ForceMode2D.Impulse);
                 isJumping = true;
             }
         }
@@ -101,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleLadderClimbing()
     {
-        rigidbody.velocity = new Vector2(moveHorizontal * LadderClimbSpeed, moveVertical * LadderClimbSpeed);
+        rigidbody.velocity = new Vector2(moveHorizontal * ladderClimbSpeed, moveVertical * ladderClimbSpeed);
         if (moveVertical != 0f)
         {
             onLadder = true;
@@ -156,11 +154,11 @@ public class PlayerMovement : MonoBehaviour
                     break;
 
                 case Constants.SpikesTag:
-                    HandleSpikesCollision(collision);
+                    HandleSpikesCollision();
                     break;
 
                 case Constants.InvokerMinigame1:
-                    inMiniGame = true;
+                    InMiniGame = true;
                     GameManager.Instance.StartMinigame1();
                     break;
 
@@ -168,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (collision.tag == Constants.DeathBarrierTag)
+        if (collision.CompareTag(Constants.DeathBarrierTag))
         {
             StartCoroutine(Respawn());
         }
@@ -180,14 +178,14 @@ public class PlayerMovement : MonoBehaviour
     /// Initiating a sequence of death and response when the player's touch spikes traps
     /// </summary>
     /// <param name="collision"></param>
-    private void HandleSpikesCollision(Collider2D collision)
+    private void HandleSpikesCollision()
     {
         isTouchingSpikes = true;
-        rigidbody.velocity = new Vector2(0f, JumpForce); 
-        StartCoroutine(FallThroughSpikes(collision));
+        rigidbody.velocity = new Vector2(0f, jumpForce); 
+        StartCoroutine(FallThroughSpikes());
     }
 
-    private IEnumerator FallThroughSpikes(Collider2D collision)
+    private IEnumerator FallThroughSpikes()
     {
         yield return new WaitForSeconds(2f);
         isTouchingSpikes = false; 
@@ -201,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == Constants.PlatformTag)
+        if (collision.gameObject.CompareTag(Constants.PlatformTag))
         {
             isJumping = true; 
         }
