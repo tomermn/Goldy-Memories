@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Exceptions;
 using UnityEngine;
 
 
@@ -55,8 +56,17 @@ public class MinigameManager : MonoBehaviour
     /// <returns>An array of sprites representing the next pair of items.</returns>
     public Sprite[] PrepareNextPair()
     {
-        Pair currentPair = pairs[pairNumber];
-        return PrepareNextPair(currentPair.First, currentPair.Second);
+        try
+        {
+            Pair currentPair = pairs[pairNumber];
+            return PrepareNextPair(currentPair.First, currentPair.Second);
+        }
+        catch (IllegalItemIndexException e)
+        {
+            Debug.Log("not enough items has been collected");
+            return null;
+        }
+
     }
 
     /// <summary>
@@ -71,12 +81,22 @@ public class MinigameManager : MonoBehaviour
         {
             numCorrect++;
         }
-        string itemName1 = inventory.GetItemByIndex(pairs[pairNumber].First);
-        string itemName2 = inventory.GetItemByIndex(pairs[pairNumber].Second);
-        float timePassed = timePressed - timeDisplay;
-        PlayerMemoryTestResult result = new PlayerMemoryTestResult(itemName1, itemName2, pairs[pairNumber].First, pairs[pairNumber].Second, isCorrect, timePassed);
-        results.Add(result);
-        Instance.ContinueToNextPair();
+
+        try
+        {
+            string itemName1 = inventory.GetItemByIndex(pairs[pairNumber].First);
+            string itemName2 = inventory.GetItemByIndex(pairs[pairNumber].Second);
+            float timePassed = timePressed - timeDisplay;
+            PlayerMemoryTestResult result = new PlayerMemoryTestResult(itemName1, itemName2, pairs[pairNumber].First,
+                pairs[pairNumber].Second, isCorrect, timePassed);
+            results.Add(result);
+            Instance.ContinueToNextPair();
+        }
+        catch (IllegalItemIndexException e)
+        {
+            Debug.Log("error in recording results");
+        }
+
     }
 
 

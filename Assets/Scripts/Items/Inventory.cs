@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using Exceptions;
 
 
 /// <summary>
@@ -12,7 +13,8 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;   // Singleton instance of the Inventory.
 
-    private List<(string, DateTime)> collectedItems = new List<(string, DateTime)>();
+    private List<(string, DateTime)> collectedItems = new();
+    private static readonly string IllegalIndexMessage = "index {0} is not in the collected items";
 
     [SerializeField] private int numOfCollectedItems;               // Number of items collected.
     [SerializeField] private int numOfItemsToCollect;      // Total number of items to collect.
@@ -44,17 +46,14 @@ public class Inventory : MonoBehaviour
     /// <summary>
     /// Gets the name of the collected item at the specified index in the inventory.
     /// </summary>
-    public string GetItemByIndex(int index)
+    public string GetItemByIndex(int index) 
     {
-        if (index >= 0 && index <= collectedItems.Count)
+        if (index < 0 || index > collectedItems.Count)
         {
-            return collectedItems[index].Item1;
+            throw new IllegalItemIndexException(string.Format(IllegalIndexMessage, index));
+
         }
-        else
-        {
-            Debug.LogError("item index is not valid");
-            return null;
-        }
+        return collectedItems[index].Item1;
     }
 
     private void Awake()
@@ -62,12 +61,12 @@ public class Inventory : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
             //LoadInventory(); - an option
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
